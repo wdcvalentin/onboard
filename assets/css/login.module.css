@@ -1,0 +1,21 @@
+.title_welcome {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.login_form {
+  margin-top: 150px;
+}
+
+.container_form {
+  margin-top: 30px;
+}
+
+.textfield {
+  width: 500px;
+}
+
+.textfield_2 {
+  margin-top: 15px;
+}
