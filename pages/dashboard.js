@@ -7,6 +7,9 @@ export default function Dashboard() {
             
             <div className='sidecontainer'>
                     <h2>Dashboard</h2>
+                    <h2>Dashboard</h2>
+                    <h2>Dashboard</h2>
+
             </div>
         </div>
     )
