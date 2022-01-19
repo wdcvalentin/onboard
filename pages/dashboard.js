@@ -1,15 +1,17 @@
-const Dashboard = () => {
+import SideBar from '../components/layout/sidebar'
+
+export default function Dashboard() {
     return (
-        <div>Dashboard component</div>
+        <div className='body'>
+            <SideBar/>
+            
+            <div className='sidecontainer'>
+                    <h2>Dashboard</h2>
+                    <h2>Dashboard</h2>
+                    <h2>Dashboard</h2>
+
+            </div>
+        </div>
     )
 }
 
-export async function getStaticProps(context) {
-    return {
-      props: {
-        protected: true,
-      }
-    };
-  }
-
-export default Dashboard;
