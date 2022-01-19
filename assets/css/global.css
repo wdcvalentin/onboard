@@ -3,3 +3,9 @@ body {
     padding: 0;
     background:#F0F0F0;
 }
+
+.body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}

@@ -1,58 +1,27 @@
 import "@material-ui/core";
+import {Box} from "@material-ui/core";
+import Link from "next/link";
 
-export default function Sidebar() {
+export default function SideBar() {
     return (
-        <div className={"nav-container"}>
-            <h1>Onboarding.</h1>
-            <nav>
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Activity</li>
-                    <li>Teams</li>
-                    <li>Planning</li>
-                    <li>Account</li>
-                </ul>
-            </nav>
-            <div className={"settings-container"}>
-                Settings
-            </div>
-
-            <style jsx>{`
-                .nav-container nav, .settings-container {
-                    font-weight: 800;
-                    font-size:1.5em;
-                }
-                .nav-container {
-                    height:100%;
-                    display:flex;
-                    flex-direction:column;
-                }
-                nav {
-                    margin-top:5%;
-                }
-                nav ul {
-                    margin:0;
-                    padding:0;
-                    list-style:none;
-                    display:flex;
-                    flex-direction:column;
-                }
-                nav ul li,.settings-container {
-                padding: 10% 10%;
-                cursor: pointer;
-                }
+        <Box className={'sidebar'}>
+            <div className={"sidebar-body"}>
+                <h1>Onboarding.</h1>
                 
-                h1{
-                    padding : 0 10%;
-                    cursor: default;
-                }
-                .settings-container {
-                }
-                nav ul li:hover, .settings-container:hover {
-                transition-duration: 0.2s;
-                background:#C9C9C9FF;
-                }
-            `}</style>
-        </div>
+                <nav>
+                    <ul>
+                        <li><Link href="/dashboard">Dashboard</Link></li>
+                        <li><Link href="/dashboard/activity">Activity</Link></li>
+                        <li><Link href="/dashboard/teams">Teams</Link></li>
+                        <li><Link href="/dashboard/planning">Planning</Link></li>
+                        <li><Link href="/dashboard/account">Account</Link></li>
+                    </ul>
+                </nav>
+
+                <div className={"settings-container"}>
+                    <Link href="/dashboard/settings">Settings</Link>
+                </div>
+            </div>
+        </Box>
     )
 }
