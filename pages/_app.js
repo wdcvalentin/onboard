@@ -1,11 +1,11 @@
-import "../assets/css/global.css"
+import "../assets/css/global.css";
 //layout
-import "../assets/css/layout/sidebar.css"
-import "../assets/css/layout/sidecontainer.css"
-// pages
-import "../assets/css/page/dashboard.css"
+import "../assets/css/layout/sidebar.css";
 //modules
 import "../assets/css/login.module.css";
+// import "../assets/css/layout/sidecontainer.css"
+// pages
+import "../assets/css/page/dashboard.css";
 
 
 export default function MyApp({ Component, pageProps }) {
