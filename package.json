@@ -6,8 +6,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.7",
+    "next": "^12.0.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-form-hook": "^0.0.1",
+    "react-hook-form": "^7.24.0"
   }
 }
