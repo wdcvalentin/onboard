@@ -1,6 +1,5 @@
 import { Button, Grid, Modal } from '@mui/material';
 import { useState } from 'react';
-import styles from "../../assets/css/dashboard.module.css";
 import { Event } from "../../components/events/event";
 import { FormEvent } from '../../components/events/FormEvent';
 import SideBar from '../../components/layout/sidebar';
@@ -14,9 +13,9 @@ export default function Events() {
         <Grid container direction="row" className='body'>
             <SideBar />
 
-            <Grid className={styles.main_content}>
+            <Grid className={"main_content"}>
                 <Grid>
-                    <h1 className={`${styles.title_menu}`}>Events</h1>
+                    <h1 className={"title_menu"}>Events</h1>
                     <Button onClick={handleOpen}>Open modal</Button>
                 </Grid>
 

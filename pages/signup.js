@@ -1,14 +1,13 @@
 import { Checkbox, Grid, TextField } from "@mui/material";
 import Head from 'next/head';
-import { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import { signupUser } from '../api/auth';
-import styles from '../assets/css/login.module.css';
-import styles from '../assets/css/_login.module.scss';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from '../components/Buttons/CustomButton';
+import {useState} from "react";
 
 export default function Signup() {
+  const [fetchResponse, setFetchResponse] = useState(null);
   const {
     register,
     handleSubmit,
@@ -41,23 +40,23 @@ export default function Signup() {
           <ButtonRedirection redirection='/login' titleRedirection='Login' />
         </Grid>
 
-        <Grid container direction='column' className={styles.login_form}>
-          <h1 className={styles.title_welcome}>Create an Onboarding Account</h1>
+        <Grid container direction='column' className={"login_form"}>
+          <h1 className={"title_welcome"}>Create an Onboarding Account</h1>
           {
             fetchResponse !== null ? <div>Vos informations sont incorrectes</div> : null
           }
-          <Grid container direction='column' alignItems='center' className={styles.container_form}>
+          <Grid container direction='column' alignItems='center' className={"container_form"}>
             <form onSubmit={handleSubmit(onSubmitFormSignup)}>
               <Grid
                 container
                 direction="column"
                 alignItems="center"
-                className={styles.container_form}
+                className={"container_form"}
               >
                 <TextField
                   error={errors.email !== undefined}
                   label="Email Address"
-                  className={`${styles.textfield}`}
+                  className={"textfield"}
                   InputLabelProps={{ style: { marginLeft: "20px" } }}
                   name="email"
                   {...register("email", {
@@ -79,8 +78,7 @@ export default function Signup() {
                 <TextField
                   error={errors.password !== undefined}
                   label="Password"
-                  className={`${styles.textfield}
-              ${styles.textfield_2}`}
+                  className={"textfield textfield_2"}
                   InputLabelProps={{ style: { marginLeft: "20px" } }}
                   type="password"
                   name="password"

@@ -1,10 +1,9 @@
 // Layouts
 @import "layout/sidebar";
-@import "layout/sidecontainer";
+// Page
 @import "page/dashboard";
+@import "page/login";
 @import "page/main";
-// Dashboard
-@import "login.module";
 // Components
 @import "components/navbar";
 
@@ -45,8 +44,7 @@ body {
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
-    background: var(--backgroundColor);
-}
+
 
 ul {
     margin: 0;
@@ -60,6 +58,11 @@ a {
 }
 h1 {
     margin: 0;
+}
+.wrapper {
+    background: var(--backgroundColor);
+}
+
 }
 
 .text--center {

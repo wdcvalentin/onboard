@@ -3,8 +3,6 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { loginUser } from '../api/auth';
-import styles from '../assets/css/login.module.css';
-import styles from '../assets/css/_login.module.scss';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from "../components/Buttons/CustomButton";
 
@@ -29,7 +27,7 @@ export default function Login() {
 
 
   return (
-    <div className="container">
+    <div className="container login">
       <Head>
         <title>login Next App</title>
       </Head>
@@ -39,8 +37,8 @@ export default function Login() {
           <ButtonRedirection redirection='/signup' titleRedirection='Sign up' />
         </Grid>
 
-        <Grid container direction='column' className={styles.login_form}>
-          <h1 className={styles.title_welcome}>Welcome to Onboarding</h1>
+        <Grid container direction='column' className={"login_form"}>
+          <h1 className={"title_welcome"}>Welcome to Onboarding</h1>
           {
             fetchResponse !== null ? <div>Vos informations sont incorrectes</div> : null
           }
@@ -49,12 +47,12 @@ export default function Login() {
               container
               direction="column"
               alignItems="center"
-              className={styles.container_form}
+              className={"container_form"}
             >
               <TextField
                 error={errors.email !== undefined}
                 label="Email Address"
-                className={`${styles.textfield}`}
+                className={"textfield"}
                 InputLabelProps={{ style: { marginLeft: "20px" } }}
                 name="email"
                 {...register("email", {
@@ -76,8 +74,7 @@ export default function Login() {
               <TextField
                 error={errors.password !== undefined}
                 label="Password"
-                className={`${styles.textfield}
-              ${styles.textfield_2}`}
+                className={"textfield"}
                 InputLabelProps={{ style: { marginLeft: "20px" } }}
                 type="password"
                 name="password"

@@ -43,8 +43,8 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href={"/signup"}>
-              <a className={'navbar--button'}>Register</a>
+            <Link href={"/"}>
+              <a className={'navbar--button'}>Get Started</a>
             </Link>
           </li>
         </ul>
