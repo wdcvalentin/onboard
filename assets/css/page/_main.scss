@@ -173,10 +173,14 @@
   border-radius: 16px;
   border: 1px solid var(--primaryColor);
   margin: 16px 0;
+  transition: var(--duration) ease-in-out;
 
-  .active {
-    display: block;
+  &:hover {
+    background-color: var(--hoverColor);
+    border: 1px solid var(--hoverColor);
+    transform: scale(1.02);
   }
+
   svg {
     fill: var(--primaryColor);
     stroke: var(--primaryColor);
