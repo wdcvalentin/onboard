@@ -1,7 +1,10 @@
 import { Checkbox, Grid, TextField } from "@mui/material";
 import Head from 'next/head';
+import { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
+import { signupUser } from '../api/auth';
 import styles from '../assets/css/login.module.css';
+import styles from '../assets/css/_login.module.scss';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from '../components/Buttons/CustomButton';
 
@@ -18,11 +21,15 @@ export default function Signup() {
     },
   });
 
-  function onSubmitFormSignup(values) {
-    reset()
-    localStorage.setItem('token', true)
-    window.location="/dashboard"
+  async function onSubmitFormSignup(values) {
+    const { data: { response } } = await signupUser(values.email, values.password);
+    if (!response) {
+      return setFetchResponse(response);
+    }
+    localStorage.setItem('token', response);
+    window.location = '/dashboard'
   }
+
   return (
     <div className="container">
       <Head>
@@ -36,7 +43,9 @@ export default function Signup() {
 
         <Grid container direction='column' className={styles.login_form}>
           <h1 className={styles.title_welcome}>Create an Onboarding Account</h1>
-
+          {
+            fetchResponse !== null ? <div>Vos informations sont incorrectes</div> : null
+          }
           <Grid container direction='column' alignItems='center' className={styles.container_form}>
             <form onSubmit={handleSubmit(onSubmitFormSignup)}>
               <Grid
@@ -98,7 +107,7 @@ export default function Signup() {
                       />
                     )}
                   />
-                  <span style={{ color: errors?.checkbox ? 'red' : null }} >I agree to Super's Terms of Service</span>
+                  <span style={{ color: errors?.checkbox ? 'red' : null }} >I agree to Onboard Terms of Service</span>
                 </Grid>
 
                 <Grid

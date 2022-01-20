@@ -1,11 +1,15 @@
 import { Grid, TextField } from "@mui/material";
 import Head from 'next/head';
+import { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { loginUser } from '../api/auth';
 import styles from '../assets/css/login.module.css';
+import styles from '../assets/css/_login.module.scss';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from "../components/Buttons/CustomButton";
 
 export default function Login() {
+  const [fetchResponse, setFetchResponse] = useState(null);
   const {
     register,
     handleSubmit,
@@ -14,9 +18,12 @@ export default function Login() {
     control,
   } = useForm();
 
-  function onSubmitFormLogin(values) {
-    reset()
-    localStorage.setItem('token', true);
+  async function onSubmitFormLogin(values) {
+    const { data: { response } } = await loginUser(values.email, values.password);
+    if (!response) {
+      return setFetchResponse(response);
+    }
+    localStorage.setItem('token', response);
     window.location = '/dashboard'
   }
 
@@ -34,7 +41,9 @@ export default function Login() {
 
         <Grid container direction='column' className={styles.login_form}>
           <h1 className={styles.title_welcome}>Welcome to Onboarding</h1>
-
+          {
+            fetchResponse !== null ? <div>Vos informations sont incorrectes</div> : null
+          }
           <form onSubmit={handleSubmit(onSubmitFormLogin)}>
             <Grid
               container

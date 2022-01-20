@@ -1,26 +1,30 @@
-import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
 import Link from "next/link";
 
 export default function SideBar() {
     return (
-        <Box className={'sidebar'}>
-            <div className={"sidebar-body"}>
-                <h1>Onboarding.</h1>
-                
-                <nav>
-                    <ul>
-                        <li><Link href="/dashboard">Dashboard</Link></li>
-                        <li><Link href="/dashboard/activity">Activity</Link></li>
-                        <li><Link href="/dashboard/teams">Teams</Link></li>
-                        <li><Link href="/dashboard/planning">Planning</Link></li>
-                        <li><Link href="/dashboard/account">Account</Link></li>
-                    </ul>
-                </nav>
-
-                <div className={"settings-container"}>
+        <Grid className="sidebar" container xs={3} direction='column' alignItems="center" >
+            <Grid>
+                <h2>Onboarding.</h2>
+                <Grid
+                    className='sidebar-links'
+                    container
+                    xs={12}
+                    direction="column"
+                    justifyContent="space-between">
+                    <Link href="/dashboard">
+                        Dashboard
+                    </Link>
+                    <Link href="/dashboard/events">Events</Link>
+                    <Link href="/dashboard/activity">Activity</Link>
+                    <Link href="/dashboard/teams">Teams</Link>
+                    <Link href="/dashboard/planning">Planning</Link>
+                    <Link href="/dashboard/account">Account</Link>
+                </Grid>
+                <Grid>
                     <Link href="/dashboard/settings">Settings</Link>
-                </div>
-            </div>
-        </Box>
+                </Grid>
+            </Grid>
+        </Grid>
     )
 }
