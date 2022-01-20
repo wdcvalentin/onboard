@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
 router.post("/new", async (req, res) => {
     try {
         const job = await JobModel.create(req.body);
-        res.send("job created : ", job);
+        res.send(`job created : ${job}`);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -40,7 +40,7 @@ router.put("/:id", async (req, res) => {
 
     try {
          const job = await JobModel.findOneAndUpdate(req.params.id, data);
-        res.send("job updated : ", job);
+         res.send(`job updated : ${job}`);
     } catch (error) {
         res.status(500).send(error);
     }

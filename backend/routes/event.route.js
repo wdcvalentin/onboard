@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
 router.post("/new", async (req, res) => {
     try {
         const event = await EventModel.create(req.body);
-        res.send("event created : ", event);
+        res.send(`event created : ${event}`);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -40,7 +40,7 @@ router.put("/:id", async (req, res) => {
 
     try {
          const event = await EventModel.findOneAndUpdate(req.params.id, data);
-        res.send("job updated : ", event);
+         res.send(`event updated : ${event}`);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -50,7 +50,28 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
          await EventModel.findOneAndDelete(req.params.id);
-        res.send("job deleted");
+        res.send("event deleted");
+    } catch (error) {
+        res.status(500).send(error);
+    }
+})
+
+// custom request
+
+// add participant to event
+router.patch("/:id/:uid", async (req, res) => {
+    const eid = req.params.id;
+    const uid = req.params.uid;
+    try {
+        const eventToCheck = await EventModel.findById(eid);
+        const checkIfUserParticipate = obj => obj == uid;
+
+        if( eventToCheck.eventAttendees.some(checkIfUserParticipate) ) {
+            res.send(`user ${uid} is already participating to this event`);
+        } else {
+            await EventModel.findOneAndUpdate(eid, { $push: { eventAttendees : { _id : uid }}})
+            res.send(`user ${uid} added to event : ${eid} `);
+        }
     } catch (error) {
         res.status(500).send(error);
     }
