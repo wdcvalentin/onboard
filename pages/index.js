@@ -2,7 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import Testimonials from "../components/Testimonials";
+import Testimonials from '../components/Testimonials'
+import Faq from '../components/Faq'
+
 
 export async function getStaticProps() {
   return {
@@ -37,6 +39,7 @@ function Home(props) {
           </div>
         </div>
       <Testimonials />
+        <Faq />
       </main>
       <Footer />
     </div>

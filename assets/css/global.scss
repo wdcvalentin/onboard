@@ -61,3 +61,25 @@ a {
 h1 {
     margin: 0;
 }
+
+.text--center {
+    text-align: center;
+}
+.flex {
+    display: flex;
+}
+.flex--column {
+    flex-direction: column;
+}
+.flex--row {
+    flex-direction: row;
+}
+.ai--center {
+    align-items: center;
+}
+.jc--flex-start {
+    justify-content: flex-start;
+}
+.ml--48 {
+    margin-left: 48px;
+}
