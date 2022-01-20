@@ -26,15 +26,11 @@ router.get("/:id", async (req, res) => {
 
 // create an event 
 router.post("/new", async (req, res) => {
-    data = req.body;
-
-    const user = await UserModel.findById(data.eventCreator)
-    console.log(user);
-
-    data.eventCompany = user.company._id;
-    console.log(data);
-
     try {
+        const data = req.body;
+        const user = await UserModel.findById(data.eventCreator)
+        data.eventCompany = user.company._id;
+
         const event = await EventModel.create(data);
         res.send(`event created : ${event}`);
     } catch (error) {
@@ -44,10 +40,10 @@ router.post("/new", async (req, res) => {
 
 // update an event by id 
 router.put("/:id", async (req, res) => {
-    data = req.body;
-    data["dateUpdate"] = new Date();
-
     try {
+        const data = req.body;
+        data.dateUpdate = new Date();
+
          const event = await EventModel.findOneAndUpdate(req.params.id, data);
          res.send(`event updated : ${event}`);
     } catch (error) {
