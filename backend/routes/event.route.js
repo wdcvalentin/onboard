@@ -6,7 +6,7 @@ const UserModel = require("../model/user");
 // get all events
 router.get("/", async (req, res) => {
     try {
-        const events = await EventModelModel.find({});
+        const events = await EventModel.find({});
         res.send(events)
     } catch (error) {
         res.status(500).send(error)
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 // get an event by id
 router.get("/:id", async (req, res) => {
     try {
-        const event = await EventModelModel.findById(req.params.id);
+        const event = await EventModel.findById(req.params.id);
         res.send(event);
     } catch (error) {
         res.status(404).send(error);
