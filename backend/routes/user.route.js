@@ -26,7 +26,7 @@ router.get("/:id", async (req, res) => {
 router.post("/new", async (req, res) => {
     try {
         const user = await UserModel.create(req.body);
-        res.send("user created : ", user)
+        res.send(`user created : ${user}`);
     } catch (error) {
         res.status(500).send(error)
     }
@@ -39,7 +39,7 @@ router.put("/:id", async (req, res) => {
 
     try {
         const user = await UserModel.findByIdAndUpdate(req.params.id, data);
-        res.send("user updated : ", user)
+        res.send(`user updated : ${user}`);
     } catch (error) {
         res.status(500).send(error)
     }

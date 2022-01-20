@@ -18,7 +18,7 @@ const eventSchema = new Schema({
     },
     description: {
         type: String,
-        required: true,
+    
         min: 1,
         max: 255
     },

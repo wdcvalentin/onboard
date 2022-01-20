@@ -7,6 +7,8 @@ const dotenv = require("dotenv")
 const authRoute = require("./routes/auth/auth")
 const userRoute = require("./routes/user.route")
 const companyRoute = require("./routes/company.route")
+const JobRoute = require("./routes/job.route")
+const EventRoute = require("./routes/event.route")
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -21,6 +23,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/api/user", authRoute)
 app.use("/api/users", userRoute)
 app.use("/api/company", companyRoute)
+app.use("/api/job", JobRoute)
+app.use("/api/event", EventRoute)
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(
