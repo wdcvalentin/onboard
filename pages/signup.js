@@ -98,7 +98,7 @@ export default function Signup() {
                       />
                     )}
                   />
-                  <span style={{ color: errors?.checkbox ? 'red' : null }} >I agree to Super's Terms of Service</span>
+                  <span style={{ color: errors?.checkbox ? 'red' : null }} >I agree to Onboard Terms of Service</span>
                 </Grid>
 
                 <Grid
