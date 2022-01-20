@@ -47,7 +47,6 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "job"
     },
-
     // event relations
     eventsCreated: [{
         type: Schema.Types.ObjectId,

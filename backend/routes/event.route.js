@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const verify = require("./auth/verifyToken");
 const EventModel = require("../model/event");
+const UserModel = require("../model/user");
 
 // get all events
 router.get("/", async (req, res) => {
@@ -25,8 +26,16 @@ router.get("/:id", async (req, res) => {
 
 // create an event 
 router.post("/new", async (req, res) => {
+    data = req.body;
+
+    const user = await UserModel.findById(data.eventCreator)
+    console.log(user);
+
+    data.eventCompany = user.company._id;
+    console.log(data);
+
     try {
-        const event = await EventModel.create(req.body);
+        const event = await EventModel.create(data);
         res.send(`event created : ${event}`);
     } catch (error) {
         res.status(500).send(error);
