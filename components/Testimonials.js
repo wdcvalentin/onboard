@@ -14,7 +14,7 @@ function Testimonials() {
         <div className={"testimonials--content"}>
           <div className={"testimonials--card"}>
             <div className={"testimonials--card-message"}>
-              <p>"I've always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!"</p>
+              <p>&quot;I&apos;ve always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!&quot;</p>
             </div>
             <div className={"testimonials--card-info"}>
               <div className={"testimonials--image"}>
@@ -33,7 +33,7 @@ function Testimonials() {
           </div>
           <div className={"testimonials--card"}>
             <div className={"testimonials--card-message"}>
-              <p>"I've always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!"</p>
+              <p>&quot;I&apos;ve always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!&quot;</p>
             </div>
             <div className={"testimonials--card-info"}>
               <div className={"testimonials--image"}>
@@ -52,7 +52,7 @@ function Testimonials() {
           </div>
           <div className={"testimonials--card"}>
             <div className={"testimonials--card-message"}>
-              <p>"I've always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!"</p>
+              <p>&quot;I&apos;ve always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!&quot;</p>
             </div>
             <div className={"testimonials--card-info"}>
               <div className={"testimonials--image"}>
@@ -71,7 +71,7 @@ function Testimonials() {
           </div>
           <div className={"testimonials--card"}>
             <div className={"testimonials--card-message"}>
-              <p>"I've always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!"</p>
+              <p>&quot;I&apos;ve always fear the first weeks when starting a new journey in a new company but with Onboard everything went smooth and cool, I loved it!&quot;</p>
             </div>
             <div className={"testimonials--card-info"}>
               <div className={"testimonials--image"}>
