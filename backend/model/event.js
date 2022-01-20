@@ -27,6 +27,11 @@ const eventSchema = new Schema({
         required: true,
         ref: "user"
     },
+    eventCompany: {
+        type: Schema.Types.ObjectId,
+        required:true,
+        ref: "company"
+    },
     eventAttendees: [{
         type: Schema.Types.ObjectId,
         ref: "user"
