@@ -6,7 +6,7 @@ const UserModel = require("../model/user");
 // get all events
 router.get("/", async (req, res) => {
     try {
-        const events = await EventModelModel.find({});
+        const events = await EventModel.find({});
         res.send(events)
     } catch (error) {
         res.status(500).send(error)
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 // get an event by id
 router.get("/:id", async (req, res) => {
     try {
-        const event = await EventModelModel.findById(req.params.id);
+        const event = await EventModel.findById(req.params.id);
         res.send(event);
     } catch (error) {
         res.status(404).send(error);
@@ -25,16 +25,14 @@ router.get("/:id", async (req, res) => {
 
 
 // create an event 
-router.post("/new", async (req, res) => {
-    data = req.body;
-
-    const user = await UserModel.findById(data.eventCreator)
-    console.log(user);
-
-    data.eventCompany = user.company._id;
-    console.log(data);
-
+router.post("/new", verify, async (req, res) => {
     try {
+        const data = req.body;
+        const uid = req.user;
+        const user = await UserModel.findById(uid)
+        data.eventCreator = uid;
+        data.eventCompany = user.company._id;
+
         const event = await EventModel.create(data);
         res.send(`event created : ${event}`);
     } catch (error) {
@@ -44,10 +42,10 @@ router.post("/new", async (req, res) => {
 
 // update an event by id 
 router.put("/:id", async (req, res) => {
-    data = req.body;
-    data["dateUpdate"] = new Date();
-
     try {
+        const data = req.body;
+        data.dateUpdate = new Date();
+
          const event = await EventModel.findOneAndUpdate(req.params.id, data);
          res.send(`event updated : ${event}`);
     } catch (error) {

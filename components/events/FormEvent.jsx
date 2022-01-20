@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import CustomButton from "../Buttons/CustomButton";
 
 export const FormEvent = () => {
@@ -48,8 +48,36 @@ export const FormEvent = () => {
           },
         })}
       />
-      <TextField id="standard-basic" label="Standard" variant="standard" />
-      <TextField id="standard-basic" label="Standard" variant="standard" />
+      <TextField
+        error={errors.description !== undefined}
+        name="eventDescription"
+        id="standard-multiline-static"
+        label="Multiline"
+        multiline
+        rows={4}
+        defaultValue="Default Value"
+        variant="standard"
+        {...register("description", {
+          required: {
+            value: true,
+            message: "You must enter a description",
+          },
+        })}
+      />
+
+      <Controller
+        control={control}
+        name="eventDate"
+        render={({ onChange, value }) => (
+          <DesktopDatePicker
+            label="Date desktop"
+            inputFormat="MM/dd/yyyy"
+            value={value}
+            onChange={onChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        )}
+      />
 
       <CustomButton br={20} bgcolor="blue" color="white" width={300}>
         Create event
