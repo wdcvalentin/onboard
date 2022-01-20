@@ -1,10 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background:#F0F0F0;
     font-family: Helvetica, Arial, sans-serif;
+    background:#F9FAFE;
 }
 
 .body {
+    display: flex;
     height: 100vh;
+    overflow: hidden;
 }
