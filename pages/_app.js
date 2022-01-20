@@ -1,11 +1,11 @@
-import "../assets/css/global.css"
+import "../assets/css/global.scss"
 //layout
-import "../assets/css/layout/sidebar.css"
-import "../assets/css/layout/sidecontainer.css"
+import "../assets/css/layout/_sidebar.scss"
+import "../assets/css/layout/_sidecontainer.scss"
 // pages
-import "../assets/css/page/dashboard.css"
+import "../assets/css/page/_dashboard.scss"
 //modules
-import "../assets/css/login.module.css";
+import "../assets/css/_login.module.scss";
 
 
 export default function MyApp({ Component, pageProps }) {

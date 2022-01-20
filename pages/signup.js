@@ -1,7 +1,7 @@
 import { Checkbox, Grid, TextField } from "@mui/material";
 import Head from 'next/head';
 import { Controller, useForm } from "react-hook-form";
-import styles from '../assets/css/login.module.css';
+import styles from '../assets/css/_login.module.scss';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from '../components/Buttons/CustomButton';
 

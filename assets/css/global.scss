@@ -1,0 +1,63 @@
+// Layouts
+@import "layout/sidebar";
+@import "layout/sidecontainer";
+@import "page/dashboard";
+@import "page/main";
+// Dashboard
+@import "login.module";
+// Components
+@import "components/navbar";
+
+
+:root {
+    --bodyFont: "Biotif", sans-serif;
+    --headingFont: "Neuzeit Grotesk Bold", sans-serif;
+    --codeFont: "Fira Code", monospace;
+
+    --primaryColor: #f2f2f2;
+    --secondaryColor: #8f9ba8;
+    --backgroundColor: #000;
+    --commandColor: rgba(255, 255, 255, 0.05);
+    --hoverColor: #212024;
+
+    --gradientDegree: 135deg;
+    --yellow: #ffff80;
+    --pink: #ff80bf;
+    --purple: #9580ff;
+    --red: #ff9580;
+    --orange: #ffca80;
+    --green: #8aff80;
+    --cyan: #80ffea;
+
+    --navHeightDesktop: 60px;
+    --navHeightMobile: 110px;
+    --borderRadius: 8px;
+
+    --duration: 0.2s;
+}
+
+* {
+    font-family: var(--bodyFont);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    background: var(--backgroundColor);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    margin: 0;
+}
