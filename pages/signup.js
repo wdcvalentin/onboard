@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import { signupUser } from '../api/auth';
 import styles from '../assets/css/login.module.css';
+import styles from '../assets/css/_login.module.scss';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from '../components/Buttons/CustomButton';
 
 export default function Signup() {
-  const [fetchResponse, setFetchResponse] = useState(null);
   const {
     register,
     handleSubmit,
@@ -107,7 +107,7 @@ export default function Signup() {
                       />
                     )}
                   />
-                  <span style={{ color: errors?.checkbox ? 'red' : null }} >I agree to Super's Terms of Service</span>
+                  <span style={{ color: errors?.checkbox ? 'red' : null }} >I agree to Onboard Terms of Service</span>
                 </Grid>
 
                 <Grid
