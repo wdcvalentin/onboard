@@ -1,7 +1,7 @@
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import clsx from 'clsx';
-import Link from 'next/Link';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 
