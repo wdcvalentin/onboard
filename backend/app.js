@@ -2,8 +2,8 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require('cors');
 const dotenv = require("dotenv")
-const authRoute = require("./routes/auth")
-const postRoute = require("./routes/posts")
+const authRoute = require("./routes/auth/auth")
+const userRoute = require("./routes/user.controller")
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 
 //route middlewares
 app.use("/api/user", authRoute)
-app.use("/api/posts", postRoute)
+app.use("/api/member", userRoute)
 
 const uri = process.env.ATLAS_URI;
 console.log('uri', uri);
@@ -33,5 +33,4 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-
-app.listen(4000, () => console.log("server up and running"))
+app.listen(port, () => console.log("server up and running"))
