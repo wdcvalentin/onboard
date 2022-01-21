@@ -35,12 +35,12 @@ router.post("/new", async (req, res) => {
 
 // update a job by id 
 router.put("/:id", async (req, res) => {
-    data = req.body;
-    data["dateUpdate"] = new Date();
-
     try {
-         const job = await JobModel.findOneAndUpdate(req.params.id, data);
-         res.send(`job updated : ${job}`);
+        const data = req.body;
+        data.dateUpdate = new Date();
+
+        const job = await JobModel.findOneAndUpdate(req.params.id, data);
+        res.send(`job updated : ${job}`);
     } catch (error) {
         res.status(500).send(error);
     }
@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
 // delete a job by id
 router.delete("/:id", async (req, res) => {
     try {
-         await JobModel.findOneAndDelete(req.params.id);
+        await JobModel.findOneAndDelete(req.params.id);
         res.send("job deleted");
     } catch (error) {
         res.status(500).send(error);

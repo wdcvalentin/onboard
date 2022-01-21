@@ -1,4 +1,5 @@
 import SideBar from '../../components/layout/sidebar'
+import { FormAddUser } from '../../components/teams/FormAddUser'
 import Image from 'next/image'
 import { FiPlus } from 'react-icons/fi'
 
@@ -12,6 +13,7 @@ export default function Teams() {
                 <button className={"team--cta"}>
                   Add team member <FiPlus />
                 </button>
+                <FormAddUser ></FormAddUser>
               </div>
               <div className={"team--wrapper"}>
                 <div className={"team--card"}>
