@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { createUser } from "../../api/user.api";
 import CustomButton from "../Buttons/CustomButton";
 
-
-export const FormAddUser = ({ fetchEvents, onSubmit }) => {
+export const FormAddUser = ({ fetchMembers, onSubmit }) => {
     const style = {
         position: "absolute",
         top: "50%",
@@ -29,8 +28,8 @@ export const FormAddUser = ({ fetchEvents, onSubmit }) => {
     async function onSubmitFormUser({ firstName, lastName, email, password }) {
         const authToken = localStorage.getItem('token');
         await createUser(firstName, lastName, email, password, authToken);
-        // await fetchEvents();
-        // onSubmit();
+        await fetchMembers();
+        onSubmit();
     }
 
     return (

@@ -11,7 +11,7 @@ export default function Teams() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const handleSubmit = () => setOpen(false);
 
   useEffect(async () => {
     await fetchMembers();
@@ -38,13 +38,17 @@ export default function Teams() {
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description">
-            <FormAddUser />
+            <FormAddUser fetchMembers={fetchMembers} onSubmit={handleSubmit} />
           </Modal>
 
         </div>
         <div className={"team--wrapper"}>
           {users && users.map((user) => (
-            <CardUser />
+            <CardUser
+              key={user._id}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              email={user.email} />
           ))}
 
         </div>

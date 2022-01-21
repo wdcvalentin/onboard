@@ -43,7 +43,7 @@ export default function Events() {
 
                 {events && events.map((event) => (
                     <Event
-                        eventId={event._id}
+                        key={event._id}
                         name={event.name}
                         description={event.description}
                         date={event.eventDate}
