@@ -3,10 +3,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { formatDateHM } from "../../utils/dateFormat";
 
-export const Event = () => {
+export const Event = ({ name, description, date, participants }) => {
   return (
-    <Card sx={{ display: "flex", height: 300, marginTop:4 }}>
+    <Card sx={{ display: "flex", height: 300, marginTop: 4 }}>
       <CardActionArea>
         <CardContent
           sx={{
@@ -16,26 +17,21 @@ export const Event = () => {
           }}
         >
           <Typography gutterBottom variant="h5" component="div">
-            Italian Restaurant
+            {name}
           </Typography>
 
           <Typography variant="body3" color="text.secondary">
-            La Table des Artistes Courbevoie 92
+            {description}
           </Typography>
-          <div>
-            <Typography variant="body2" color="text.secondary">
-              de 12:30pm à 2pm
-            </Typography>
-
-            <Typography variant="body2" color="text.secondary">
-              The IT, Management and Commercial Development team joined this
-              space
-            </Typography>
-          </div>
 
           <Typography variant="body2" color="text.secondary">
-            See all participants
+            {formatDateHM(date)}
           </Typography>
+
+
+          {participants.length > 0 ?
+            <Typography variant="body2" color="text.secondary">${participants.length} joined</Typography>
+            : null}
 
           <CardActions>
             <Button size="small" variant="outlined">

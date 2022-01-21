@@ -1,8 +1,10 @@
 import { TextField } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import { createEvent } from "../../api/event";
+import { formatDateToYMD } from '../../utils/dateFormat';
 import CustomButton from "../Buttons/CustomButton";
 
-export const FormEvent = () => {
+export const FormEvent = ({ fetchEvents, onSubmit }) => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,24 +26,22 @@ export const FormEvent = () => {
     control,
   } = useForm();
 
-  async function onSubmitFormEvent(values) {
-    const {
-      data: { response },
-    } = await loginUser(values.email, values.password);
-    if (!response) {
-      return setFetchResponse(response);
-    }
-    localStorage.setItem("token", response);
-    window.location = "/dashboard";
+  async function onSubmitFormEvent({ date, description, name }) {
+    const authToken = localStorage.getItem('token');
+    const dateToIso = new Date(date).toISOString();
+    await createEvent(dateToIso, description, name, authToken);
+    await fetchEvents();
+    onSubmit();
   }
+
   return (
     <form onSubmit={handleSubmit(onSubmitFormEvent)} style={style}>
       <TextField
         variant="standard"
-        error={errors.eventName !== undefined}
+        error={errors.name !== undefined}
         label="Event name"
-        name="eventName"
-        {...register("email", {
+        name="name"
+        {...register("name", {
           required: {
             value: true,
             message: "You must enter an event name",
@@ -50,12 +50,12 @@ export const FormEvent = () => {
       />
       <TextField
         error={errors.description !== undefined}
-        name="eventDescription"
+        name="description"
         id="standard-multiline-static"
-        label="Multiline"
+        label="Description"
         multiline
         rows={4}
-        defaultValue="Default Value"
+        placeholder="Party saturday night !"
         variant="standard"
         {...register("description", {
           required: {
@@ -66,17 +66,10 @@ export const FormEvent = () => {
       />
 
       <Controller
+        render={({ field }) => <input type="datetime-local" min={formatDateToYMD(new Date)} {...field} />}
+        name="date"
         control={control}
-        name="eventDate"
-        render={({ onChange, value }) => (
-          <DesktopDatePicker
-            label="Date desktop"
-            inputFormat="MM/dd/yyyy"
-            value={value}
-            onChange={onChange}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        )}
+        defaultValue={formatDateToYMD(new Date)}
       />
 
       <CustomButton br={20} bgcolor="blue" color="white" width={300}>

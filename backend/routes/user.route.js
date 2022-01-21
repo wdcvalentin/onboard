@@ -24,7 +24,8 @@ router.get("/:id", async (req, res) => {
 })
 
 // create a user 
-router.post("/new", async (req, res) => {
+router.post("/new", verify, async (req, res) => {
+    console.log('[User]: Creating user');
     try {
         const emailExist = await UserModel.findOne({email: req.body.email})
         if (emailExist) return res.status(409).send("email already exist")
@@ -32,6 +33,7 @@ router.post("/new", async (req, res) => {
             const data = req.body;
             const salt = await bcrypt.genSalt(10)
             data.password = await bcrypt.hash(req.body.password, salt);
+            data.company = req.user.company;
 
             const user = await UserModel.create(data);
             res.send(`user created : ${user}`);

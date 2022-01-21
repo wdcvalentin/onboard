@@ -1,4 +1,5 @@
 import SideBar from '../../components/layout/sidebar'
+import { FormAddUser } from '../../components/teams/FormAddUser'
 
 export default function Teams() {
     return (
@@ -9,7 +10,7 @@ export default function Teams() {
 
 
 
-
+                    <FormAddUser ></FormAddUser>
             </div>
         </div>
     )
