@@ -25,24 +25,23 @@ export default function Teams() {
   }
 
   return (
-    <div className={"team--section"}>
+    <div className={"dashboard--section"}>
       <SideBar />
-      <div className={'team--container'}>
-        <div className={"team--heading"}>
+      <div className={'dashboard--container'}>
+        <div className={"dashboard--heading"}>
           <h2>Team</h2>
-          <button onClick={handleOpen} className={"team--cta"}>
+          <button onClick={handleOpen} className={"dashboard--cta"}>
             Add team member <FiPlus />
           </button>
-
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description">
-            <FormAddUser fetchMembers={fetchMembers} onSubmit={handleSubmit} />
-          </Modal>
-
         </div>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description">
+          <FormAddUser fetchMembers={fetchMembers} onSubmit={handleSubmit} />
+        </Modal>
         <div className={"team--wrapper"}>
           {users && users.map((user) => (
             <CardUser

@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { FiUsers, FiMapPin, FiClock, FiFileText } from 'react-icons/fi'
+import { FiClock, FiMapPin, FiUsers } from 'react-icons/fi'
+import { formatDateHM } from '../../utils/dateFormat'
 
 export const Event = ({ name, description, date, participants }) => {
   return (
@@ -7,13 +8,12 @@ export const Event = ({ name, description, date, participants }) => {
       <div className={"card--container"}>
         <div className={"card--content"}>
           <div className={"card--heading"}>
-            <h3>Italian Restaurant</h3>
-            <p><FiMapPin /> La Table des Artistes Courbevoie 92</p>
+            <h3>{name}</h3>
+            <p><FiMapPin /> {description}</p>
           </div>
           <div className={"card--info"}>
-            <p><FiClock /> de <strong>12:30pm</strong> à <strong>2pm</strong></p>
-            <p><FiFileText /> The IT, Management and Commercial Development team joined this space</p>
-            <p><FiUsers /> See all participants </p>
+            <p><FiClock /> {formatDateHM(date)} </p>
+            {participants.length > 0 && <p><FiUsers />  `${participants.length} joined` </p>}
           </div>
           <div className={"card--cta"}>
             <button className={"event--cta"}>Join</button>

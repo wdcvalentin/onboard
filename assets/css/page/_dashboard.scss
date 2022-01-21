@@ -168,27 +168,14 @@
   padding: 32px;
   margin: 16px 0;
 }
-.card--content {
 
-}
 .card--image {
   img {
     border-radius: 8px;
   }
 }
 
-
-
-.event--card-wrapper {
-
-}
-
-.event--info {
-  svg {
-    margin-right: 8px;
-  }
-}
-.event--cta {
+.card--cta button {
   font-size: 12px;
   font-weight: bold;
   border-radius: 32px;
