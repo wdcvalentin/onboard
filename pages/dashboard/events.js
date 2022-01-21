@@ -1,11 +1,12 @@
-import { Button, Grid, Modal } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { getEventsOfUsersCompany } from '../../api/event';
-import { Event } from "../../components/events/event";
-import { FormEvent } from '../../components/events/FormEvent';
+import {Button, Grid, Modal} from '@mui/material';
+import {useState} from 'react';
+import {Event} from "../../components/events/event";
+import {FormEvent} from '../../components/events/FormEvent';
 import SideBar from '../../components/layout/sidebar';
+import {FiPlus} from "react-icons/fi";
 
 export default function Events() {
+
     const [open, setOpen] = useState(false);
     const [events, setEvents] = useState(null);
     const handleOpen = () => setOpen(true);
@@ -53,4 +54,3 @@ export default function Events() {
         </Grid>
     )
 }
-

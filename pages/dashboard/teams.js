@@ -7,6 +7,7 @@ import { CardUser } from '../../components/teams/CardUser';
 import { FormAddUser } from '../../components/teams/FormAddUser';
 
 export default function Teams() {
+
   const [users, setUsers] = useState(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -50,10 +51,8 @@ export default function Teams() {
               lastName={user.lastName}
               email={user.email} />
           ))}
-
         </div>
       </div>
     </div>
   )
 }
-
