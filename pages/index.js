@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import Testimonials from '../components/Testimonials'
 import Faq from '../components/Faq'
 
@@ -41,7 +40,6 @@ function Home(props) {
       <Testimonials />
         <Faq />
       </main>
-      <Footer />
     </div>
   )
 }

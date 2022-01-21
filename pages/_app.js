@@ -1,9 +1,4 @@
 import "../assets/css/global.scss";
-//layout
-import "../assets/css/layout/_sidebar.scss";
-//modules
-import "/assets/css/page/_login.scss";
-import "/assets/css/page/_dashboard.scss";
 
 export default function MyApp({ Component, pageProps }) {
     if (typeof window !== 'undefined') {

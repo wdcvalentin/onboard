@@ -1,30 +1,61 @@
-import { Grid } from "@mui/material";
 import Link from "next/link";
 
 export default function SideBar() {
-    return (
-        <Grid className="sidebar" container xs={3} direction='column' alignItems="center" >
-            <Grid>
-                <h2>Onboarding.</h2>
-                <Grid
-                    className='sidebar-links'
-                    container
-                    xs={12}
-                    direction="column"
-                    justifyContent="space-between">
-                    <Link href="/dashboard">
-                        Dashboard
-                    </Link>
-                    <Link href="/dashboard/events">Events</Link>
-                    <Link href="/dashboard/activity">Activity</Link>
-                    <Link href="/dashboard/teams">Teams</Link>
-                    <Link href="/dashboard/planning">Planning</Link>
-                    <Link href="/dashboard/account">Account</Link>
-                </Grid>
-                <Grid>
-                    <Link href="/dashboard/settings">Settings</Link>
-                </Grid>
-            </Grid>
-        </Grid>
-    )
+  return (
+    <div className={"sidebar--section"}>
+      <div className={"sidebar--container"}>
+        <div className={"sidebar--navigation"}>
+          <div className={"sidebar--heading"}>
+            <h2>Onboard.</h2>
+          </div>
+          <ul>
+            <li>
+              <Link href="/dashboard">
+                <a className={"sidebar--item"}>Dashboard</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/events">
+                <a className={"sidebar--item"}>Events</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/activity">
+                <a className={"sidebar--item"}>Activity</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/teams">
+                <a className={"sidebar--item"}>Team</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/planning">
+                <a className={"sidebar--item"}>Planning</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/account">
+                <a className={"sidebar--item"}>Account</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className={"sidebar--navigation-secondary"}>
+          <ul>
+            <li>
+              <Link href="/dashboard/settings">
+                <a className={"sidebar--item"}>Settings</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/logout">
+                <a className={"sidebar--item item--destructive"}>Logout</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
 }
