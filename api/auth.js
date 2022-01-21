@@ -7,7 +7,7 @@ const headers = {
 export const loginUser = async (email, password) => {
     try {
         const response = await axios.post(
-            `http://localhost:4000/api/user/login`,
+            `http://localhost:4000/api/auth/login`,
             { email, password },
             { headers: headers }
         );
@@ -20,7 +20,7 @@ export const loginUser = async (email, password) => {
 export const signupUser = async (email, password, name) => {
     try {
         const response = await axios.post(
-            `http://localhost:4000/api/user/signup`,
+            `http://localhost:4000/api/auth/signup`,
             { email, password, name },
             { headers: headers }
         );

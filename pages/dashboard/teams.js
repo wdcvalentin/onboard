@@ -1,136 +1,55 @@
-import SideBar from '../../components/layout/sidebar'
-import { FormAddUser } from '../../components/teams/FormAddUser'
-import Image from 'next/image'
-import { FiPlus } from 'react-icons/fi'
+import { Modal } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { FiPlus } from 'react-icons/fi';
+import { getUsersFromCompany } from '../../api/user.api';
+import SideBar from '../../components/layout/sidebar';
+import { CardUser } from '../../components/teams/CardUser';
+import { FormAddUser } from '../../components/teams/FormAddUser';
 
 export default function Teams() {
-    return (
-        <div className={"team--section"}>
-            <SideBar/>
-            <div className={'team--container'}>
-              <div className={"team--heading"}>
-                <h2>Team</h2>
-                <button className={"team--cta"}>
-                  Add team member <FiPlus />
-                </button>
-                <FormAddUser ></FormAddUser>
-              </div>
-              <div className={"team--wrapper"}>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                      />
-                  </div>
-                  <div className={"team--info"}>
-                  <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-                <div className={"team--card"}>
-                  <div className={"team--image"}>
-                    <Image
-                      src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                      alt="joseph-gonzalez"
-                      width={"100%"}
-                      height={"100%"}
-                      layout={"responsive"}
-                    />
-                  </div>
-                  <div className={"team--info"}>
-                    <p>Joseph Gonzalez</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  const [users, setUsers] = useState(null);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
+  useEffect(async () => {
+    await fetchMembers();
+  }, [])
+
+  const fetchMembers = async () => {
+    const authToken = localStorage.getItem('token');
+    const { data } = await getUsersFromCompany(authToken);
+    return setUsers(data);
+  }
+
+  return (
+    <div className={"team--section"}>
+      <SideBar />
+      <div className={'team--container'}>
+        <div className={"team--heading"}>
+          <h2>Team</h2>
+          <button onClick={handleOpen} className={"team--cta"}>
+            Add team member <FiPlus />
+          </button>
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description">
+            <FormAddUser />
+          </Modal>
+
         </div>
-    )
+        <div className={"team--wrapper"}>
+          {users && users.map((user) => (
+            <CardUser />
+          ))}
+
+        </div>
+      </div>
+    </div>
+  )
 }
 

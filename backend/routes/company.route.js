@@ -3,6 +3,18 @@ const verify = require("./auth/verifyToken");
 const CompanyModel = require("../model/company");
 const UserModel = require("../model/user");
 
+// get members of a company by id
+router.get("/members", verify, async (req, res) => {
+    try {
+        const uid = req.user;
+        const user = await UserModel.findById(uid)
+        const members = await CompanyModel.find({ company: user.company })
+        res.send(members);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+})
+
 // get all companies
 router.get("/", async (req, res) => {
     try {
@@ -58,15 +70,5 @@ router.delete("/:id", async (req, res) => {
 })
 
 // custom request
-
-// get members of a company by id
-router.get("/:id/members", async (req, res) => {
-    try {
-        const members = await UserModel.find({ company: req.params.id })
-        res.send(members);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-})
 
 module.exports = router
