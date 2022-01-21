@@ -33,8 +33,8 @@ router.post("/new", verify, async (req, res) => {
             const data = req.body;
             const salt = await bcrypt.genSalt(10)
             data.password = await bcrypt.hash(req.body.password, salt);
-            data.company = req.user.company;
-
+            const creator = await UserModel.findById(req.user)
+            data.company = creator.company;
             const user = await UserModel.create(data);
             res.send(`user created : ${user}`);
         }

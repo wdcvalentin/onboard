@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export const CardUser = () => {
+export const CardUser = ({ firstName, lastName}) => {
     return (
         <div className={"team--card"}>
                   <div className={"team--image"}>
@@ -13,7 +13,7 @@ export const CardUser = () => {
                       />
                   </div>
                   <div className={"team--info"}>
-                  <p>Joseph Gonzalez</p>
+                  <p>{firstName} {lastName}</p>
                   </div>
                 </div>
     )
