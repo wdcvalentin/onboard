@@ -151,11 +151,14 @@
    ========================================================================== */
 .event--wrapper {
   width: 100%;
-  height: 100%;
+}
+.event--container {
+  max-height: calc(90vh - 128px);
   overflow: scroll;
 }
 .event--card {
   display: block;
+  height: 325px;
 }
 .event--card-wrapper {
   display: flex;
@@ -168,13 +171,36 @@
   margin: 16px 0;
 }
 .event--image {
-  display: block;
   max-width: 50%;
+  width: 100%;
   height: 100%;
+
   img {
     width: 100%;
-    height: 100%;
+    max-height: 300px;
     max-width: 50%;
     border-radius: 8px;
+    object-fit: cover;
+  }
+}
+.event--info {
+  svg {
+    margin-right: 8px;
+  }
+}
+.event--cta {
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 32px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  transition: var(--duration) ease-in-out;
+  border: 1px solid var(--backgroundColor);
+  color: var(--backgroundColor);
+  background: inherit;
+
+  &:hover {
+    background-color: var(--backgroundColor);
+    color: var(--primaryColor);
   }
 }

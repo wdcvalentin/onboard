@@ -21,18 +21,20 @@ export default function Events() {
           </button>
         </div>
         <div className={"event--wrapper"}>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <FormEvent/>
-          </Modal>
-          <Event/>
-          <Event/>
-          <Event/>
-          <Event/>
+         <div className={"event--container"}>
+           <Modal
+             open={open}
+             onClose={handleClose}
+             aria-labelledby="modal-modal-title"
+             aria-describedby="modal-modal-description"
+           >
+             <FormEvent/>
+           </Modal>
+           <Event/>
+           <Event/>
+           <Event/>
+           <Event/>
+         </div>
         </div>
       </div>
     </div>
