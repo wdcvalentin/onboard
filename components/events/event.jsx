@@ -1,55 +1,27 @@
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+import Image from 'next/image'
 
 export const Event = () => {
   return (
-    <Card sx={{ display: "flex", height: 300, marginTop:4 }}>
-      <CardActionArea>
-        <CardContent
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <Typography gutterBottom variant="h5" component="div">
-            Italian Restaurant
-          </Typography>
-
-          <Typography variant="body3" color="text.secondary">
-            La Table des Artistes Courbevoie 92
-          </Typography>
-          <div>
-            <Typography variant="body2" color="text.secondary">
-              de 12:30pm à 2pm
-            </Typography>
-
-            <Typography variant="body2" color="text.secondary">
-              The IT, Management and Commercial Development team joined this
-              space
-            </Typography>
-          </div>
-
-          <Typography variant="body2" color="text.secondary">
-            See all participants
-          </Typography>
-
-          <CardActions>
-            <Button size="small" variant="outlined">
-              Join
-            </Button>
-          </CardActions>
-        </CardContent>
-      </CardActionArea>
-      <CardMedia
-        sx={{ width: 300, margin: 2, borderRadius: 2 }}
-        component="img"
-        image="https://www.tourismebretagne.com/app/uploads/crt-bretagne/2018/11/le-grand-be-restaurant-1-1920x960.jpg"
-        alt="green iguana"
-      />
-    </Card>
-  );
-};
+    <div className={"event--card"}>
+      <div className={"event--card-wrapper"}>
+        <div className={"event--info"}>
+          <h3 className={"event--title"}>Italian Restaurant</h3>
+          <p className={"event--place"}>La Table des Artistes Courbevoie 92</p>
+          <p className={"event--time"}>de 12:30pm à 2pm</p>
+          <p className={"event--description"}>The IT, Management and Commercial Development team joined this space</p>
+          <p className={"event--participant"}>See all participants</p>
+          <button>Join</button>
+        </div>
+        <div className={"event--image"}>
+          <Image
+            src={"/static/images/fallon-travels-q03ZLncun2Y-unsplash.jpg"}
+            alt={"Italian Restaurant"}
+            width={"100"}
+            height={"100"}
+            layout={"responsive"}
+          />
+        </div>
+      </div>
+    </div>
+  )
+}

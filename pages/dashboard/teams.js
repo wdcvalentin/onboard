@@ -4,12 +4,12 @@ import { FiPlus } from 'react-icons/fi'
 
 export default function Teams() {
     return (
-        <div className={"team--section"}>
+        <div className={"dashboard--section"}>
             <SideBar/>
-            <div className={'team--container'}>
-              <div className={"team--heading"}>
+            <div className={'dashboard--container'}>
+              <div className={"dashboard--heading"}>
                 <h2>Team</h2>
-                <button className={"team--cta"}>
+                <button className={"dashboard--cta"}>
                   Add team member <FiPlus />
                 </button>
               </div>

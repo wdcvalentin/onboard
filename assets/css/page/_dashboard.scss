@@ -10,14 +10,52 @@
 
 /* Dashboard
    ========================================================================== */
-.team--section {
+.dashboard--section {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: row;
   background-color: var(--dashboardBackgroundColor);
+  overflow: hidden;
 }
+.dashboard--container {
+  width: 100%;
+  height: 100%;
+  padding: 64px;
+}
+.dashboard--heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 32px;
 
+  button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 32px;
+    padding: 16px;
+    text-transform: uppercase;
+    transition: var(--duration) ease-in-out;
+    border: 1px solid var(--backgroundColor);
+    color: var(--backgroundColor);
+    background-color: inherit;
+
+    &:hover {
+      background-color: var(--backgroundColor);
+      color: var(--primaryColor);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+    }
+  }
+}
 
 
 /* Sidebar
@@ -64,8 +102,6 @@
   color: var(--red)
 }
 
-
-
 /* Team
    ========================================================================== */
 .team--section {
@@ -110,36 +146,35 @@
     border-radius: 8px;
   }
 }
-.team--heading {
+
+/* Event
+   ========================================================================== */
+.event--wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+.event--card {
+  display: block;
+}
+.event--card-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 32px;
-
-  button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  align-items: flex-start;
+  background-color: var(--primaryColor);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 16px 0;
+}
+.event--image {
+  display: block;
+  max-width: 50%;
+  height: 100%;
+  img {
+    width: 100%;
     height: 100%;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 32px;
-    padding: 16px;
-    text-transform: uppercase;
-    transition: var(--duration) ease-in-out;
-    border: 1px solid var(--backgroundColor);
-    color: var(--backgroundColor);
-    background-color: inherit;
-
-    &:hover {
-      background-color: var(--backgroundColor);
-      color: var(--primaryColor);
-    }
-
-    svg {
-      width: 16px;
-      height: 16px;
-      margin-left: 8px;
-    }
+    max-width: 50%;
+    border-radius: 8px;
   }
 }
