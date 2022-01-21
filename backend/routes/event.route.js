@@ -25,10 +25,12 @@ router.get("/:id", async (req, res) => {
 
 
 // create an event 
-router.post("/new", async (req, res) => {
+router.post("/new", verify, async (req, res) => {
     try {
         const data = req.body;
-        const user = await UserModel.findById(data.eventCreator)
+        const uid = req.user;
+        const user = await UserModel.findById(uid)
+        data.eventCreator = uid;
         data.eventCompany = user.company._id;
 
         const event = await EventModel.create(data);
@@ -64,9 +66,9 @@ router.delete("/:id", async (req, res) => {
 // custom request
 
 // add participant to event
-router.patch("/:id/:uid", async (req, res) => {
+router.patch("/:id/participate", verify, async (req, res) => {
     const eid = req.params.id;
-    const uid = req.params.uid;
+    const uid = req.user;
     try {
         const eventToCheck = await EventModel.findById(eid);
         const checkIfUserParticipate = obj => obj == uid;
@@ -79,6 +81,18 @@ router.patch("/:id/:uid", async (req, res) => {
         }
     } catch (error) {
         res.status(500).send(error);
+    }
+})
+
+// get user company event
+router.get("/mycompany", verify, async (req, res) => {
+    const user = await UserModel.findById(req.user)
+
+    try {
+        const companyEvents = await EventModel.find({eventCompany: user.company});
+        res.send(companyEvents);
+    } catch (error) {
+        res.status(404).send(error);
     }
 })
 
