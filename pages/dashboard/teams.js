@@ -1,6 +1,10 @@
-import SideBar from '../../components/layout/sidebar'
-import Image from 'next/image'
-import { FiPlus } from 'react-icons/fi'
+import { Modal } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { FiPlus } from 'react-icons/fi';
+import { getUsersFromCompany } from '../../api/user.api';
+import SideBar from '../../components/layout/sidebar';
+import { CardUser } from '../../components/teams/CardUser';
+import { FormAddUser } from '../../components/teams/FormAddUser';
 
 export default function Teams() {
     return (
@@ -129,6 +133,8 @@ export default function Teams() {
               </div>
             </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 

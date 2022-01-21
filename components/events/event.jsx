@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { FiUsers, FiMapPin, FiClock, FiFileText } from 'react-icons/fi'
 
-export const Event = () => {
+export const Event = ({ name, description, date, participants }) => {
   return (
     <div className={"event--card"}>
       <div className={"event--card-wrapper"}>

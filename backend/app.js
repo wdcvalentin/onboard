@@ -20,8 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 //route middlewares
-app.use("/api/user", authRoute)
-app.use("/api/users", userRoute)
+app.use("/api/auth", authRoute)
+app.use("/api/user", userRoute)
 app.use("/api/company", companyRoute)
 app.use("/api/job", JobRoute)
 app.use("/api/event", EventRoute)
