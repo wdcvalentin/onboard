@@ -6,7 +6,7 @@ export default function SideBar() {
       <div className={"sidebar--container"}>
         <div className={"sidebar--navigation"}>
           <div className={"sidebar--heading"}>
-            <h2>Onboard.</h2>
+            <h2>Onboard.™</h2>
           </div>
           <ul>
             <li>
