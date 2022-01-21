@@ -2,6 +2,7 @@ import {Button, Grid, Modal} from '@mui/material';
 import {useState} from 'react';
 import {Event} from "../../components/events/event";
 import {FormEvent} from '../../components/events/FormEvent';
+
 import SideBar from '../../components/layout/sidebar';
 import {FiPlus} from "react-icons/fi";
 

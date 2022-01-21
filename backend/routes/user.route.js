@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const verify = require("./auth/verifyToken");
 const UserModel = require("../model/user");
+const bcrypt = require("bcryptjs");
 
 // get all users
 router.get("/", async (req, res) => {
@@ -23,10 +24,21 @@ router.get("/:id", async (req, res) => {
 })
 
 // create a user 
-router.post("/new", async (req, res) => {
+router.post("/new", verify, async (req, res) => {
+    console.log('[User]: Creating user');
     try {
-        const user = await UserModel.create(req.body);
-        res.send(`user created : ${user}`);
+        const emailExist = await UserModel.findOne({email: req.body.email})
+        if (emailExist) return res.status(409).send("email already exist")
+        else {
+            const data = req.body;
+            const salt = await bcrypt.genSalt(10)
+            data.password = await bcrypt.hash(req.body.password, salt);
+            data.company = req.user.company;
+
+            const user = await UserModel.create(data);
+            res.send(`user created : ${user}`);
+        }
+
     } catch (error) {
         res.status(500).send(error)
     }
@@ -34,10 +46,10 @@ router.post("/new", async (req, res) => {
 
 // update a user by id
 router.put("/:id", async (req, res) => {
-    data = req.body;
-    data["dateUpdate"] = new Date();
-
     try {
+        const data = req.body;
+        data.dateUpdate = new Date();
+
         const user = await UserModel.findByIdAndUpdate(req.params.id, data);
         res.send(`user updated : ${user}`);
     } catch (error) {
