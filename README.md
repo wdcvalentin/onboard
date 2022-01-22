@@ -2,7 +2,10 @@
 <p align="center">
   <h3 align="center">ONBOARD.</h3>
   <p align="center">
-    Devlab Team 6 - Event Management Platform for companies<br />
+   Event Management Platform for companies<br />
+  </p>
+  <p align="center">
+   Devlab Team 6<br />
   </p>
 </p>
 
