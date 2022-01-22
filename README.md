@@ -38,14 +38,15 @@ ONBOARD is a platform manager for companies events<br>
 
 <!-- CONTACT -->
 ## Contact
-Axel Carandang :
-Github: [https://github.com/azor40k](https://github.com/azor40k)
-LinkedIn: [https://www.linkedin.com/in/axelcarandang](https://www.linkedin.com/in/axelcarandang)
 
-Romain Valla :
-Github: [https://github.com/RomainValla](https://github.com/RomainValla)
-LinkedIn: [https://www.linkedin.com/in/romainvalla](https://www.linkedin.com/in/romainvalla)
+###Axel Carandang :
+####Github: [https://github.com/azor40k](https://github.com/azor40k)
+####LinkedIn: [https://www.linkedin.com/in/axelcarandang](https://www.linkedin.com/in/axelcarandang)
 
-Valentin Waché de Corbie :
-Github: [https://github.com/wdcvalentin](https://github.com/wdcvalentin)
-LinkedIn: [https://www.linkedin.com/in/valentin-wach%C3%A9-de-corbie-5bb28b153](https://www.linkedin.com/in/valentin-wach%C3%A9-de-corbie-5bb28b153)
+###Romain Valla :
+####Github: [https://github.com/RomainValla](https://github.com/RomainValla)
+####LinkedIn: [https://www.linkedin.com/in/romainvalla](https://www.linkedin.com/in/romainvalla)
+
+###Valentin Waché de Corbie :
+####Github: [https://github.com/wdcvalentin](https://github.com/wdcvalentin)
+####LinkedIn: [https://www.linkedin.com/in/valentin-wach%C3%A9-de-corbie-5bb28b153](https://www.linkedin.com/in/valentin-wach%C3%A9-de-corbie-5bb28b153)
