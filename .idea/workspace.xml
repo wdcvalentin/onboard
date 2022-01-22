@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3b6dc09-1f90-440b-88ee-e0f703fe1c99" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +24,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="v1.1" />
-                    <option name="lastUsedInstant" value="1642847011" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1642847915" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1642763291" />
+                    <option name="branchName" value="v1.1" />
+                    <option name="lastUsedInstant" value="1642847011" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="crud" />
@@ -56,12 +56,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\axelc\code\devlab\iim-a4-devlab" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -74,7 +80,7 @@
       <workItem from="1642718370300" duration="6466000" />
       <workItem from="1642755187233" duration="8051000" />
       <workItem from="1642771973250" duration="2292000" />
-      <workItem from="1642846427908" duration="1231000" />
+      <workItem from="1642846427908" duration="1513000" />
     </task>
     <servers />
   </component>
