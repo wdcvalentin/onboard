@@ -13,7 +13,10 @@ export const loginUser = async (email, password) => {
         );
         return response
     } catch (error) {
-        console.error(error)
+        if (error.response) {
+            console.log('error.response', error.response.data);
+            return error.response.data
+        }
     }
 }
 
@@ -26,6 +29,9 @@ export const signupUser = async (email, password, name) => {
         );
         return response
     } catch (error) {
-        console.error(error)
+        if (error.response) {
+            console.log('error.response', error.response.data);
+            return error.response.data
+        }
     }
 }

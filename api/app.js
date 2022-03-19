@@ -11,7 +11,7 @@ const JobRoute = require("./routes/job.route")
 const EventRoute = require("./routes/event.route")
 
 const app = express();
-const port = process.env.PORT || 3080;
+const port = process.env.PORT || 4000;
 dotenv.config()
 
 //middleware

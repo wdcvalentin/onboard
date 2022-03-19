@@ -21,9 +21,9 @@ export default function Signup() {
   });
 
   async function onSubmitFormSignup(values) {
-    const { data: { response } } = await signupUser(values.email, values.password);
+    const { message, response } = await signupUser(values.email, values.password);
     if (!response) {
-      return setFetchResponse(response);
+      return setFetchResponse(message);
     }
     localStorage.setItem('token', response);
     window.location = '/dashboard'
