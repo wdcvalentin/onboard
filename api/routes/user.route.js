@@ -60,8 +60,8 @@ router.put("/:id", async (req, res) => {
 // delete a user by id
 router.delete("/:id", async (req, res) => {
     try {
-        await UserModel.findOneAndDelete(req.params.id, req.body);
-        res.send("user deleted")
+        const deletedUser = await UserModel.findOneAndDelete({_id: req.params.id});
+        res.send(`user ${deletedUser._id} deleted`)
     } catch (error) {
         res.status(500).send(error)
     }

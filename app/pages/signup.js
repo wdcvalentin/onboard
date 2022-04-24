@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { signupUser } from '../api/auth';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from '../components/Buttons/CustomButton';
-import {useState} from "react";
+import { useState } from "react";
 
 export default function Signup() {
   const [fetchResponse, setFetchResponse] = useState(null);
@@ -20,8 +20,8 @@ export default function Signup() {
     },
   });
 
-  async function onSubmitFormSignup(values) {
-    const { message, response } = await signupUser(values.email, values.password);
+  async function onSubmitFormSignup({ email, password, firstName, lastName }) {
+    const { message, response } = await signupUser(email, password, firstName, lastName);
     if (!response) {
       return setFetchResponse(message);
     }
@@ -76,9 +76,39 @@ export default function Signup() {
                 />
 
                 <TextField
+                  error={errors.firstName !== undefined}
+                  label="Firstname"
+                  className={"textfield textfield_2"}
+                  InputLabelProps={{ style: { marginLeft: "20px" } }}
+                  type="firstName"
+                  name="firstName"
+                  {...register("firstName", {
+                    required: {
+                      value: true,
+                      message: "You must enter a firstName",
+                    },
+                  })}
+                />
+
+                <TextField
+                  error={errors.lastName !== undefined}
+                  label="Lastname"
+                  className={"textfield textfield_2"}
+                  InputLabelProps={{ style: { marginLeft: "20px" } }}
+                  type="lastName"
+                  name="lastName"
+                  {...register("lastName", {
+                    required: {
+                      value: true,
+                      message: "You must enter a lastName",
+                    },
+                  })}
+                />
+
+                <TextField
                   error={errors.password !== undefined}
                   label="Password"
-                  className={"textfield textfield_2"}
+                  className={"textfield textfield_3"}
                   InputLabelProps={{ style: { marginLeft: "20px" } }}
                   type="password"
                   name="password"
