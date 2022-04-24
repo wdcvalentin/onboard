@@ -17,14 +17,13 @@ export default function Login() {
   } = useForm();
 
   async function onSubmitFormLogin(values) {
-    const { data: { response } } = await loginUser(values.email, values.password);
+    const { message, response } = await loginUser(values.email, values.password);
     if (!response) {
-      return setFetchResponse(response);
+      return setFetchResponse(message);
     }
     localStorage.setItem('token', response);
     window.location = '/dashboard'
   }
-
 
   return (
     <div className="container login">
@@ -40,7 +39,7 @@ export default function Login() {
         <Grid container direction='column' className={"login_form"}>
           <h1 className={"title_welcome"}>Welcome to Onboarding</h1>
           {
-            fetchResponse !== null ? <div>Vos informations sont incorrectes</div> : null
+            fetchResponse !== null ? <div>{fetchResponse}</div> : null
           }
           <form onSubmit={handleSubmit(onSubmitFormLogin)}>
             <Grid

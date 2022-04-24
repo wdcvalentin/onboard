@@ -7,13 +7,13 @@ const { registerValidation, loginValidation } = require("../../validation")
 router.post("/signup", async (req, res) => {
     try {
         const { error } = registerValidation(req.body)
-        if (error) return res.send({
+        if (error) return res.status(401).send({
             message: "Wrong data",
             response: false
         })
 
         const emailExist = await User.findOne({ email: req.body.email })
-        if (emailExist) return res.send({
+        if (emailExist) return res.status(401).send({
             message: "email already exist",
             response: false
         })
@@ -26,7 +26,7 @@ router.post("/signup", async (req, res) => {
 
         })
         const savedUser = await user.save()
-        res.send({ user: savedUser })
+        return res.send({ user: savedUser })
 
     } catch (error) {
         res.status(400).send(error)
@@ -35,25 +35,25 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { error } = loginValidation(req.body)
-    if (error) res.send({
+    if (error) return res.status(401).send({
         message: "Type validation is incorrect",
         response: false
     })
 
     const user = await User.findOne({ email: req.body.email })
-    if (!user) res.send({
+    if (!user) return res.status(401).send({
         message: "Invalid email or password",
         response: false
     })
 
     const validPass = await bcrypt.compare(req.body.password, user.password)
-    if (!validPass) res.send({
+    if (!validPass) return res.status(401).send({
         message: "password is incorrect",
         response: false
     })
 
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
-    res.send({
+    return res.send({
         message: 'OK',
         response: token
     })

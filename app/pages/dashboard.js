@@ -16,4 +16,10 @@ export default function Dashboard() {
   )
 }
 
-
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      protected: true
+    }, // Will be passed to the page component as props
+  }
+}
