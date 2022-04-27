@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { logoutUser } from '../../api/auth'
 
 export default function SideBar() {
   return (
@@ -49,8 +50,8 @@ export default function SideBar() {
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/logout">
-                <a className={"sidebar--item item--destructive"}>Logout</a>
+              <Link href="/">
+                <a onClick={() => logoutUser()} className={"sidebar--item item--destructive"}>Logout</a>
               </Link>
             </li>
           </ul>

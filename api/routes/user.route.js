@@ -14,9 +14,9 @@ router.get("/", async (req, res) => {
 })
 
 // get a user by id
-router.get("/:id", async (req, res) => {
+router.get("/get-user", verify, async (req, res) => {
     try {
-        const user = await UserModel.findById(req.params.id);
+        const user = await UserModel.findById(req.user._id);
         res.send(user)
     } catch (error) {
         res.status(404).send(error)

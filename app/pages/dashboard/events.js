@@ -1,21 +1,23 @@
+import { useEffect, useState, useContext } from 'react';
 import { Modal } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { FiPlus } from "react-icons/fi";
 import { getEventsOfUsersCompany } from '../../api/event';
 import { Event } from "../../components/events/event";
 import { FormEvent } from '../../components/events/FormEvent';
+import { Context } from '../../Context/context';
 import SideBar from '../../components/layout/sidebar';
 
-
 export default function Events() {
+    const userContext = useContext(Context);
+    const { userState } = userContext;
     const [open, setOpen] = useState(false);
     const [events, setEvents] = useState(null);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     useEffect(async () => {
-        await fetchEvents();
-    }, [])
+        (userState && userState.company) && await fetchEvents();
+    }, [userState])
 
     const fetchEvents = async () => {
         const authToken = localStorage.getItem('token');

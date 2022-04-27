@@ -1,12 +1,18 @@
+import { useState, useContext } from 'react';
+import { useRouter } from 'next/router'
+import { Context } from '../Context/context';
+import { ACTIONS } from '../reducer/reducer';
 import { Grid, TextField } from "@mui/material";
 import Head from 'next/head';
-import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { loginUser } from '../api/auth';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from "../components/Buttons/CustomButton";
 
 export default function Login() {
+  const router = useRouter();
+  const userContext = useContext(Context)
+  const { userDispatch } = userContext;
   const [fetchResponse, setFetchResponse] = useState(null);
   const {
     register,
@@ -21,8 +27,9 @@ export default function Login() {
     if (!response) {
       return setFetchResponse(message);
     }
-    localStorage.setItem('token', response);
-    window.location = '/dashboard'
+    userDispatch({ type: ACTIONS.SET_USER, payload: { user: response.user } });
+    localStorage.setItem('token', response.token);
+    router.push('/dashboard')
   }
 
   return (
