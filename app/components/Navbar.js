@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 export default function Navbar() {
-
   return <header className={"header"}>
     <div className={'header--wrapper'}>
       <div className={'navbar--branding'}>
@@ -38,9 +37,14 @@ export default function Navbar() {
       <div className={'navbar--secondary'}>
         <ul>
           <li>
-            <Link href={"/login"}>
-              <a className={'navbar--item'}>Sign In</a>
-            </Link>
+            {localStorage.getItem('tokenn') ? <Link href={"/dashboard"}>
+              <a className={'navbar--item'}>Dashboard</a>
+            </Link> :
+              <Link href={"/login"}>
+                <a className={'navbar--item'}>Log In</a>
+              </Link>
+            }
+
           </li>
           <li>
             <Link href={"/"}>

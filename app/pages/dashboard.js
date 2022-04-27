@@ -14,7 +14,7 @@ export default function Dashboard() {
           <h2>Dashboard</h2>
         </div>
         <div className={"dashboard--wrapper"}>
-          <h3>Hello {userState.firstName}</h3>
+          <h3>Hello {userState && userState.firstName}</h3>
         </div>
       </div>
     </div>

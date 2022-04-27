@@ -1,5 +1,22 @@
 import axios from 'axios';
 
+export const getUser = async (authToken) => {
+    try {
+        const response = await axios.get(
+            `http://localhost:4000/api/user/get-user`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authToken
+                }
+            }
+        );
+        return response.data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export const createUser = async (firstName, lastName, email, password, authToken) => {
     try {
         const response = await axios.post(

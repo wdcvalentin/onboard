@@ -13,7 +13,7 @@ export const Event = ({ name, description, date, participants }) => {
           </div>
           <div className={"card--info"}>
             <p><FiClock /> {formatDateHM(date)} </p>
-            {participants.length > 0 && <p><FiUsers />  `${participants.length} joined` </p>}
+            {participants.length > 0 && <p><FiUsers /> {participants.length} joined </p>}
           </div>
           <div className={"card--cta"}>
             <button className={"event--cta"}>Join</button>

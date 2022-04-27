@@ -27,7 +27,6 @@ export default function Login() {
     if (!response) {
       return setFetchResponse(message);
     }
-    console.log('response', response)
     userDispatch({ type: ACTIONS.SET_USER, payload: { user: response.user } });
     localStorage.setItem('token', response.token);
     router.push('/dashboard')

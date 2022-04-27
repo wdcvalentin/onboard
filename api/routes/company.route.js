@@ -6,8 +6,8 @@ const UserModel = require("../model/user");
 // get members of a company by id
 router.get("/members", verify, async (req, res) => {
     try {
-        const uid = req.user;
-        const user = await UserModel.findById(uid)
+        const { _id } = req.user;
+        const user = await UserModel.findById(_id)
         const members = await UserModel.find({ company: user.company })
         res.send(members);
     } catch (error) {

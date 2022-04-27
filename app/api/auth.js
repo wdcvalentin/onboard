@@ -35,3 +35,7 @@ export const signupUser = async (email, password, firstName, lastName) => {
         }
     }
 }
+
+export const logoutUser = () => {
+    localStorage.removeItem('token');
+}
