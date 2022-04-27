@@ -1,6 +1,12 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
+  let token;
+  useEffect(() => {
+    token = localStorage.getItem('token');
+  }, [])
+
   return <header className={"header"}>
     <div className={'header--wrapper'}>
       <div className={'navbar--branding'}>
@@ -37,7 +43,7 @@ export default function Navbar() {
       <div className={'navbar--secondary'}>
         <ul>
           <li>
-            {localStorage.getItem('tokenn') ? <Link href={"/dashboard"}>
+            {token ? <Link href={"/dashboard"}>
               <a className={'navbar--item'}>Dashboard</a>
             </Link> :
               <Link href={"/login"}>
