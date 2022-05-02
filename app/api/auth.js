@@ -7,9 +7,10 @@ const headers = {
 export const loginUser = async (email, password) => {
     try {
         const response = await axios.post(
-            `http://localhost:4000/api/auth/login`,
+            `${process.env.NEXT_PUBLIC_HOST_API_URL}/api/auth/login`,
             { email, password },
-            { headers: headers }
+            { headers: headers },
+            { withCredentials: true }
         );
         return response.data
     } catch (error) {
@@ -23,7 +24,7 @@ export const loginUser = async (email, password) => {
 export const signupUser = async (email, password, firstName, lastName) => {
     try {
         const response = await axios.post(
-            `http://localhost:4000/api/auth/signup`,
+            `${process.env.NEXT_PUBLIC_HOST_API_URL}/api/auth/signup`,
             { email, password, firstName, lastName },
             { headers: headers }
         );

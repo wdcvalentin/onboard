@@ -58,11 +58,12 @@ router.post("/login", async (req, res) => {
     })
 
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
+
     return res.send({
         message: 'OK',
         response: {
-            token,
             user,
+            token
         } 
     })
 })

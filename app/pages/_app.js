@@ -1,22 +1,26 @@
-import { useReducer, useEffect } from 'react';
-import { reducer, initialState } from '../reducer/reducer';
-import { Context } from '../Context/context'
-import { ACTIONS } from '../reducer/reducer';
-import { getUser } from '../api/user.api'
+import { useEffect, useReducer } from 'react';
+import { getUser } from '../api/user.api';
 import "../assets/css/global.scss";
+import { Context } from '../Context/context';
+import { ACTIONS, initialState, reducer } from '../reducer/reducer';
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({Component, pageProps}) {
   const [user, userDispatch] = useReducer(reducer, initialState);
 
-  useEffect(async () => {
-    if (!user || !user.user) {
-      const userData = await getUser(localStorage.getItem('token'))
-      userDispatch({ type: ACTIONS.SET_USER, payload: { user: userData } });
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    async function fetchUser() {
+      const response = await getUser(token)
+      if (!user || !user.user) {
+        userDispatch({ type: ACTIONS.SET_USER, payload: { user: response } });
+      }
     }
+    token && fetchUser()
   }, [])
 
   if (typeof window !== 'undefined') {
-    if (pageProps.protected && !localStorage.getItem('token')) {
+    if (pageProps.protected && !localStorage.getItem('token')
+       ) {
       return <div>You do not have access. try to <a href="/login">log in</a></div>
     }
   }

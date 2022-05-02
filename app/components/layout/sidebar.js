@@ -1,7 +1,17 @@
+import { useContext, useReducer } from 'react';
+import { Context } from '../../Context/context';
+import { ACTIONS, initialState, reducer } from '../../reducer/reducer';
 import Link from "next/link";
 import { logoutUser } from '../../api/auth'
 
+
 export default function SideBar() {
+  const [user, userDispatch] = useReducer(reducer, initialState);
+  
+  function logout() {
+    userDispatch({ type: ACTIONS.SET_USER, payload: { user: null } });
+    logoutUser()
+  }
   return (
     <div className={"sidebar--section"}>
       <div className={"sidebar--container"}>
@@ -51,7 +61,7 @@ export default function SideBar() {
             </li>
             <li>
               <Link href="/">
-                <a onClick={() => logoutUser()} className={"sidebar--item item--destructive"}>Logout</a>
+                <a onClick={() => logout()} className={"sidebar--item item--destructive"}>Logout</a>
               </Link>
             </li>
           </ul>
