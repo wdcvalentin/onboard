@@ -1,11 +1,11 @@
-import { useEffect, useState, useContext } from 'react';
 import { Modal } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import { FiPlus } from "react-icons/fi";
 import { getEventsOfUsersCompany } from '../../api/event';
 import { Event } from "../../components/events/event";
 import { FormEvent } from '../../components/events/FormEvent';
-import { Context } from '../../Context/context';
 import SideBar from '../../components/layout/sidebar';
+import { Context } from '../../Context/context';
 
 export default function Events() {
     const userContext = useContext(Context);
@@ -15,8 +15,8 @@ export default function Events() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    useEffect(async () => {
-        (userState && userState.company) && await fetchEvents();
+    useEffect(() => {
+        (userState && userState.company) && fetchEvents();
     }, [userState])
 
     const fetchEvents = async () => {

@@ -7,7 +7,7 @@ const UserModel = require("../model/user");
 // get user company event
 router.get("/mycompany", verify, async (req, res) => {
     try {
-        const user = await UserModel.findById(req.user)
+        const user = await UserModel.findById(req.user._id)
         const companyEvents = await EventModel.find({eventCompany: user.company});
         res.send(companyEvents);
     } catch (error) {
