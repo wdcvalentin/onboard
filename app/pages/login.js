@@ -23,12 +23,24 @@ export default function Login() {
   } = useForm();
 
   async function onSubmitFormLogin(values) {
-    const { message, response } = await loginUser(values.email, values.password);
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const options = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password
+      })
+    };
+    const response = await fetch('/api/login', options);
+    const { message, response: userData } = await response.json()
     if (!response) {
       return setFetchResponse(message);
     }
-    userDispatch({ type: ACTIONS.SET_USER, payload: { user: response.user } });
-    localStorage.setItem('token', response.token);
+    userDispatch({ type: ACTIONS.SET_USER, payload: { user: userData.user } });
+    localStorage.setItem('token', userData.token);
     router.push('/dashboard')
   }
 

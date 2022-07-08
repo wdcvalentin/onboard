@@ -21,11 +21,26 @@ export default function Signup() {
   });
 
   async function onSubmitFormSignup({ email, password, firstName, lastName }) {
-    const { message, response } = await signupUser(email, password, firstName, lastName);
-    if (!response) {
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const options = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        email,
+        firstName,
+        lastName,
+        password,
+      })
+    };
+    const response = await fetch('/api/signup', options);
+    const { message, response: token } = await response.json()
+
+    if (!token) {
       return setFetchResponse(message);
     }
-    localStorage.setItem('token', response);
+    localStorage.setItem('token', token);
     window.location = '/dashboard'
   }
 
