@@ -1,7 +1,7 @@
+import { signIn } from 'next-auth/react';
 import { Checkbox, Grid, TextField } from "@mui/material";
 import Head from 'next/head';
 import { Controller, useForm } from "react-hook-form";
-import { signupUser } from '../api/auth';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from '../components/Buttons/CustomButton';
 import { useState } from "react";
@@ -34,13 +34,15 @@ export default function Signup() {
         password,
       })
     };
-    const response = await fetch('/api/signup', options);
-    const { message, response: token } = await response.json()
-
-    if (!token) {
-      return setFetchResponse(message);
+    const response = await fetch('/api/auth/signup', options);
+    console.log('response', response)
+    const res = await response.json()
+    console.log('res', res)
+    if (res.error) {
+      return setFetchResponse(res?.error);
     }
-    localStorage.setItem('token', token);
+
+    await signIn('credentials', { email, password });
     window.location = '/dashboard'
   }
 

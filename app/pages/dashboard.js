@@ -1,20 +1,16 @@
-import { useContext } from 'react';
-import { Context } from '../Context/context';
+import { getSession, useSession } from 'next-auth/react';
 import SideBar from '../components/layout/sidebar'
 
-export default function Dashboard() {
-  const userContext = useContext(Context);
-  const { userState } = userContext;
-
+export default function Dashboard({ sessionAuth, user }) {
   return (
     <div className={"dashboard--section"}>
-      <SideBar/>
+      <SideBar />
       <div className='dashboard--container'>
         <div className={"dashboard--heading"}>
           <h2>Dashboard</h2>
         </div>
         <div className={"dashboard--wrapper"}>
-          <h3>Hello {userState && userState.firstName}</h3>
+          <h3>Hello {user.firstName} </h3>
         </div>
       </div>
     </div>
@@ -22,9 +18,24 @@ export default function Dashboard() {
 }
 
 export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      props: {
+        session: null
+      }
+    }
+  }
+
+  const response = await fetch(`http://localhost:3000/api/user/user?email=${session.user.email}`)
+  const user = await response.json();
+
   return {
     props: {
-      protected: true
+      sessionAuth: session,
+      user,
+      protected: true,
     }, // Will be passed to the page component as props
   }
 }

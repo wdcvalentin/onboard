@@ -1,3 +1,4 @@
+import { signIn, useSession } from 'next-auth/react';
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/router'
 import { Context } from '../Context/context';
@@ -11,8 +12,8 @@ import CustomButton from "../components/Buttons/CustomButton";
 
 export default function Login() {
   const router = useRouter();
-  const userContext = useContext(Context)
-  const { userDispatch } = userContext;
+  // const userContext = useContext(Context)
+  // const { userDispatch } = userContext;
   const [fetchResponse, setFetchResponse] = useState(null);
   const {
     register,
@@ -23,24 +24,18 @@ export default function Login() {
   } = useForm();
 
   async function onSubmitFormLogin(values) {
-    const headers = {
-      "Content-Type": "application/json"
-    };
     const options = {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        email: values.email,
-        password: values.password
-      })
+      email: values.email,
+      password: values.password,
+      redirect: false,
     };
-    const response = await fetch('/api/login', options);
-    const { message, response: userData } = await response.json()
-    if (!response) {
-      return setFetchResponse(message);
+    const response = await signIn('credentials', options);
+
+    if (response.error) {
+      return setFetchResponse(response.error);
     }
-    userDispatch({ type: ACTIONS.SET_USER, payload: { user: userData.user } });
-    localStorage.setItem('token', userData.token);
+    // // userDispatch({ type: ACTIONS.SET_USER, payload: { user: userData.user } });
+    // localStorage.setItem('token', userData.token);
     router.push('/dashboard')
   }
 

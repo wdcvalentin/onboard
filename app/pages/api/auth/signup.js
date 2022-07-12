@@ -1,8 +1,7 @@
-import { connectMongo } from "../../utils/connectMongo";
-import { registerValidation } from "../../utils/validation";
-import User from "../../models/user";
+import { connectMongo } from "../../../utils/connectMongo";
+import { registerValidation } from "../../../utils/validation";
+import User from "../../../models/user";
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken'
 
 export default async function handler(req, res) {
     const { error } = registerValidation(req.body)
@@ -30,12 +29,8 @@ export default async function handler(req, res) {
             lastName: req.body.lastName,
         })
         await user.save()
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
 
-        return res.send({
-            message: 'OK',
-            response: token
-        })
+        return res.send(true)
     } catch (error) {
         throw new Error(`[signup]: ${error}`)
     }
