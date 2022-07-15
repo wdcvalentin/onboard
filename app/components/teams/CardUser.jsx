@@ -5,7 +5,7 @@ export const CardUser = ({ firstName, lastName }) => {
     <div className={"team--card"}>
       <div className={"team--image"}>
         <Image
-          src="/static/images/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
+          src="/static/images/man_user.png"
           alt="joseph-gonzalez"
           width={"100%"}
           height={"100%"}

@@ -1,10 +1,11 @@
+import { useRouter } from 'next/router';
 import { TextField } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { createEvent } from "../../api/event";
 import { formatDateToYMD } from '../../utils/dateFormat';
 import CustomButton from "../Buttons/CustomButton";
 
-export const FormEvent = ({ fetchEvents, onSubmit }) => {
+export const FormEvent = ({ onSubmit, userId }) => {
+  const router = useRouter();
   const style = {
     position: "absolute",
     top: "50%",
@@ -26,11 +27,33 @@ export const FormEvent = ({ fetchEvents, onSubmit }) => {
     control,
   } = useForm();
 
+  const createEvent = async (date, description, name) => {
+    try {
+      const headers = {
+        "Content-Type": "application/json"
+      };
+      const options = {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          eventDate: date,
+          description,
+          name,
+          userId,
+        })
+      };
+      const response = await fetch(`/api/event/new?id=${userId}`, options)
+
+      return response
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   async function onSubmitFormEvent({ date, description, name }) {
-    const authToken = localStorage.getItem('token');
     const dateToIso = new Date(date).toISOString();
-    await createEvent(dateToIso, description, name, authToken);
-    await fetchEvents();
+    await createEvent(dateToIso, description, name);
+    router.replace(router.asPath);
     onSubmit();
   }
 

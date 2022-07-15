@@ -12,7 +12,6 @@ export async function middleware(req) {
     return NextResponse.next()
 }
 
-// Supports both a single string value or an array of matchers
 export const config = {
     matcher: ['/dashboard/:path*'],
 }

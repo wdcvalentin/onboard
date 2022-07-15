@@ -1,29 +1,15 @@
+import { getSession } from 'next-auth/react';
 import { Modal } from '@mui/material';
-import { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FiPlus } from "react-icons/fi";
-import { getEventsOfUsersCompany } from '../../api/event';
 import { Event } from "../../components/events/event";
 import { FormEvent } from '../../components/events/FormEvent';
 import SideBar from '../../components/layout/sidebar';
-import { Context } from '../../Context/context';
 
-export default function Events() {
-    const userContext = useContext(Context);
-    const { userState } = userContext;
+export default function Events({ events, userId }) {
     const [open, setOpen] = useState(false);
-    const [events, setEvents] = useState(null);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
-    useEffect(() => {
-        (userState && userState.company) && fetchEvents();
-    }, [userState])
-
-    const fetchEvents = async () => {
-        const authToken = localStorage.getItem('token');
-        const { data } = await getEventsOfUsersCompany(authToken);
-        return setEvents(data);
-    }
     const handleSubmit = () => setOpen(false);
 
     return (
@@ -44,7 +30,7 @@ export default function Events() {
                             aria-labelledby="modal-modal-title"
                             aria-describedby="modal-modal-description"
                         >
-                            <FormEvent fetchEvents={fetchEvents} onSubmit={handleSubmit} />
+                            <FormEvent userId={userId} onSubmit={handleSubmit} />
                         </Modal>
                         {events && events.map((event) => (
                             <Event
@@ -60,3 +46,27 @@ export default function Events() {
         </div>
     )
 }
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context)
+  
+    if (!session) {
+      return {
+        props: {
+          session: null
+        }
+      }
+    }
+  
+    const response = await fetch(`http://localhost:3000/api/user/company-event?id=${session.id}`)
+    const events = await response.json();
+  
+    return {
+      props: {
+        sessionAuth: session,
+        events,
+        userId: session.id,
+        protected: true,
+      }, // Will be passed to the page component as props
+    }
+  }
