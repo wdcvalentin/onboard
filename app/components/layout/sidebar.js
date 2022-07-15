@@ -1,15 +1,10 @@
-import { useContext, useReducer } from 'react';
-import { Context } from '../../Context/context';
-import { ACTIONS, initialState, reducer } from '../../reducer/reducer';
 import Link from "next/link";
 import { logoutUser } from '../../api/auth'
 
 
 export default function SideBar() {
-  const [user, userDispatch] = useReducer(reducer, initialState);
   
   function logout() {
-    userDispatch({ type: ACTIONS.SET_USER, payload: { user: null } });
     logoutUser()
   }
   return (
@@ -36,7 +31,7 @@ export default function SideBar() {
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/teams">
+              <Link href="/dashboard/team">
                 <a className={"sidebar--item"}>Team</a>
               </Link>
             </li>

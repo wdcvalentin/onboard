@@ -1,12 +1,9 @@
-import { useContext, useState } from 'react';
+import { getSession } from 'next-auth/react';
 import { useForm } from "react-hook-form";
-import { Context } from '../../Context/context';
 import { updateUser } from '../../api/user.api';
 import SideBar from '../../components/layout/sidebar';
 
-export default function Account() {
-  const userContext = useContext(Context);
-  const { userState: user } = userContext;
+export default function Account({ user }) {
   const {
     register,
     handleSubmit,
@@ -61,3 +58,25 @@ export default function Account() {
     )
 }
 
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      props: {
+        session: null
+      }
+    }
+  }
+
+  const response = await fetch(`http://localhost:3000/api/user/${session.id}`)
+  const user = await response.json();
+
+  return {
+    props: {
+      sessionAuth: session,
+      user,
+      protected: true,
+    }, // Will be passed to the page component as props
+  }
+}

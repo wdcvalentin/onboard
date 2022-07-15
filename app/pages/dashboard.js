@@ -1,4 +1,4 @@
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import SideBar from '../components/layout/sidebar'
 
 export default function Dashboard({ sessionAuth, user }) {
@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const response = await fetch(`http://localhost:3000/api/user/user?email=${session.user.email}`)
+  const response = await fetch(`http://localhost:3000/api/user/${session.id}`)
   const user = await response.json();
 
   return {
