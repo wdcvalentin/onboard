@@ -28,7 +28,8 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const response = await fetch(`http://localhost:3000/api/user/${session.id}`)
+  const URL = process.env.NODE_ENV === 'development' ? process.env.NEXT_LOCAL_URL : process.env.NEXT_PUBLIC_HOST_API_URL;
+  const response = await fetch(`${URL}/api/user/${session.id}`)
   const user = await response.json();
 
   return {

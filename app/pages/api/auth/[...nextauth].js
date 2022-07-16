@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { connectMongo } from "../../../utils/connectMongo";
-import { loginValidation, registerValidation } from "../../../utils/validation";
+import { loginValidation } from "../../../utils/validation";
 import User from "../../../models/user";
 import bcrypt from 'bcryptjs';
 
