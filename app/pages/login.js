@@ -1,26 +1,19 @@
-import { signIn, useSession } from 'next-auth/react';
-import { useState, useContext } from 'react';
+import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 import { useRouter } from 'next/router'
-import { Context } from '../Context/context';
-import { ACTIONS } from '../reducer/reducer';
 import { Grid, TextField } from "@mui/material";
 import Head from 'next/head';
 import { useForm } from "react-hook-form";
-import { loginUser } from '../api/auth';
 import ButtonRedirection from '../components/Buttons/ButtonRedirection';
 import CustomButton from "../components/Buttons/CustomButton";
 
 export default function Login() {
   const router = useRouter();
-  // const userContext = useContext(Context)
-  // const { userDispatch } = userContext;
   const [fetchResponse, setFetchResponse] = useState(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    control,
   } = useForm();
 
   async function onSubmitFormLogin(values) {
@@ -29,13 +22,16 @@ export default function Login() {
       password: values.password,
       redirect: false,
     };
+
     const response = await signIn('credentials', options);
 
+    if (!response) {
+      return setFetchResponse('An Error occured, we are working on it ...');
+    }
     if (response.error) {
       return setFetchResponse(response.error);
     }
-    // // userDispatch({ type: ACTIONS.SET_USER, payload: { user: userData.user } });
-    // localStorage.setItem('token', userData.token);
+
     router.push('/dashboard')
   }
 
