@@ -6,7 +6,7 @@ export async function middleware(req) {
     const session = await getToken({ req: req, secret: process.env.SECRET });
 
     if (!session) {
-        return NextResponse.redirect(`${NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_HOST_API_URL : process.env.NEXTAUTH_URL}/login`)
+        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_HOST_API_URL : process.env.NEXTAUTH_URL}/login`)
     }
 
     return NextResponse.next()
