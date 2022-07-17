@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logoutUser } from '../../api/auth'
+import { signOut } from 'next-auth/react';
 
 
 export default function SideBar() {
@@ -56,7 +56,7 @@ export default function SideBar() {
             </li>
             <li>
               <Link href="/">
-                <a onClick={() => logout()} className={"sidebar--item item--destructive"}>Logout</a>
+                <a onClick={() => signOut({ callbackUrl: '/' })} className={"sidebar--item item--destructive"}>Logout</a>
               </Link>
             </li>
           </ul>
