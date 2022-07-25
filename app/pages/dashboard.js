@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const URL = process.env.NEXT_PUBLIC_NODE_ENV !== 'development' ? process.env.NEXT_PUBLIC_HOST_API_URL : process.env.NEXTAUTH_URL;
+  const URL = process.env.NEXTAUTH_URL;
   const response = await fetch(`${URL}/api/user/${session.id}`)
   const user = await response.json();
 
