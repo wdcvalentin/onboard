@@ -1,8 +1,13 @@
-import { TextField } from "@mui/material";
+import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
+import { BiSearch } from 'react-icons/bi'
+import { MdClear } from 'react-icons/md'
 import CustomButton from "../Buttons/CustomButton";
 
-export const FormAddUser = ({ onSubmit, userId }) => {
+export const FormAddUser = ({ onSubmit, teamMembers }) => {
+  const [users, setUsers] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
   const style = {
     position: "absolute",
     top: "50%",
@@ -15,6 +20,7 @@ export const FormAddUser = ({ onSubmit, userId }) => {
     padding: 20,
     display: "flex",
     flexDirection: "column",
+    alignItems: 'center',
   };
   const {
     register,
@@ -24,94 +30,82 @@ export const FormAddUser = ({ onSubmit, userId }) => {
     control,
   } = useForm();
 
-  const createUser = async (firstName, lastName, email, password) => {
-    try {
-      const headers = {
-        "Content-Type": "application/json"
-      };
-      const options = {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          firstName, lastName, email, password
-        })
-      };
-      const response = await fetch(`/api/user/company-member?id=${userId}`, options)
-
-      return response
-    } catch (error) {
-      console.error(error)
+  useEffect(() => {
+    const getUsers = async (email) => {
+      try {
+        const response = await fetch(`/api/user/users`)
+        const data = await response.json()
+        const result = data.filter((user) => !teamMembers.some(({ _id }) => user._id === _id))
+        setUsers(result)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+    getUsers()
+  }, [])
+
+  const handleFilter = (event) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const newFilter = users.filter((value) => {
+      return value.email.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
+
+  const searchSuggestion = (value) => (
+    <div key={value._id} className="dataItem">
+      <p>{value.email}</p>
+    </div>
+  )
 
   async function onSubmitFormUser({ firstName, lastName, email, password }) {
-    await createUser(firstName, lastName, email, password);
+    // await createUser(firstName, lastName, email, password);
     onSubmit();
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmitFormUser)} style={style}>
-      <TextField
-        variant="standard"
-        error={errors.firstName !== undefined}
-        label="Firstname"
-        name="firstName"
-        {...register("firstName", {
-          required: {
-            value: true,
-            message: "You must enter a firstname",
-          },
-        })}
-      />
-      <TextField
-        variant="standard"
-        error={errors.lastName !== undefined}
-        label="Lastname"
-        name="lastName"
-        {...register("lastName", {
-          required: {
-            value: true,
-            message: "You must enter a lastName",
-          },
-        })}
-      />
+      <div className="search">
+        <div className="searchInputs">
+          <input
+            type="text"
+            placeholder={'Search for a User'}
+            value={wordEntered}
+            onChange={handleFilter}
+          />
+          <div className="searchIcon">
+            {filteredData.length === 0 ? (
+              <BiSearch />
+            ) : (
+              <MdClear id="clearBtn" onClick={clearInput} />
+            )}
+          </div>
+        </div>
+        <div className='dataResult'>
+          {filteredData.length === 0 && users
+            ?
+            users.map(user => {
+              return searchSuggestion(user)
+            })
+            :
+            filteredData.slice(0, 15).map(value => {
+              return searchSuggestion(value)
+            })
 
-      <TextField
-        error={errors.email !== undefined}
-        label="Email Address"
-        className={"textfield"}
-        name="email"
-        variant="standard"
-        {...register("email", {
-          required: {
-            value: true,
-            message: "You must enter your email",
-          },
-          minLength: {
-            value: 8,
-            message: "This is not long enough to be an email",
-          },
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: "This needs to be a valid email address",
-          },
-        })}
-      />
-
-      <TextField
-        error={errors.password !== undefined}
-        label="Password"
-        className={"textfield"}
-        type="password"
-        name="password"
-        variant="standard"
-        {...register("password", {
-          required: {
-            value: true,
-            message: "You must enter your password",
-          },
-        })}
-      />
+          }
+        </div>
+      </div>
 
       <CustomButton br={20} bgcolor="blue" color="white" width={300}>
         Create User

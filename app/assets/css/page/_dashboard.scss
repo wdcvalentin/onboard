@@ -1,11 +1,11 @@
 .main_content {
-    margin-left: 20px;
-    overflow: scroll;
+  margin-left: 20px;
+  overflow: scroll;
 }
 
 .title_menu {
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 400;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
 }
 
 /* Dashboard
@@ -18,11 +18,13 @@
   background-color: var(--dashboardBackgroundColor);
   overflow: hidden;
 }
+
 .dashboard--container {
   width: 100%;
   height: 100%;
   padding: 64px;
 }
+
 .dashboard--heading {
   display: flex;
   flex-direction: row;
@@ -64,6 +66,7 @@
   padding: 16px 64px;
   border-right: 2px solid var(--primaryLightColor);
 }
+
 .sidebar--container {
   display: flex;
   flex-direction: column;
@@ -75,6 +78,7 @@
     margin: 16px 0;
   }
 }
+
 .sidebar--heading {
   h2 {
     font-size: 36px;
@@ -82,6 +86,7 @@
     color: var(--backgroundColor);
   }
 }
+
 .sidebar--item {
   font-size: 12px;
   font-weight: 600;
@@ -98,6 +103,7 @@
     background-color: var(--primaryLightColor);
   }
 }
+
 .item--destructive {
   color: var(--red)
 }
@@ -111,27 +117,32 @@
   flex-direction: row;
   background-color: var(--dashboardBackgroundColor);
 }
+
 .team--container {
   width: 100%;
   padding: 64px;
 }
+
 .team--wrapper {
   display: grid;
   column-gap: 16px;
   row-gap: 16px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+
 .team--card {
   background-color: var(--primaryColor);
   padding: 16px;
   border-radius: 16px;
   transition: var(--duration) ease-in-out;
   text-align: center;
+
   &:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 40px -3px rgba(0, 0, 0, .05);
   }
 }
+
 .team--info {
   p {
     font-size: 16px;
@@ -139,6 +150,7 @@
     margin: 16px 0 0 0;
   }
 }
+
 .team--image {
   img {
     object-fit: cover;
@@ -152,6 +164,7 @@
 .event--wrapper {
   width: 100%;
 }
+
 .event--container {
   max-height: calc(90vh - 128px);
   overflow: scroll;
@@ -169,25 +182,69 @@
   margin: 16px 0;
 }
 
+.card--content {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
 .card--image {
   img {
     border-radius: 8px;
   }
 }
 
-.card--cta button {
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 32px;
-  padding: 8px 16px;
-  text-transform: uppercase;
-  transition: var(--duration) ease-in-out;
-  border: 1px solid var(--backgroundColor);
-  color: var(--backgroundColor);
-  background: inherit;
+.show-participants--cta {
+  background: none;
+  border: none;
+  cursor: pointer;
 
   &:hover {
-    background-color: var(--backgroundColor);
-    color: var(--primaryColor);
+    transition: var(--duration) ease-in-out;
+    text-decoration: underline;
   }
 }
+
+.card--cta {
+  .event--cta {
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 32px;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    transition: var(--duration) ease-in-out;
+    border: 1px solid var(--backgroundColor);
+    color: var(--backgroundColor);
+    background: inherit;
+    cursor: pointer;
+
+    &:hover {
+      transition: var(--duration) ease-in-out;
+      background-color: var(--backgroundColor);
+      color: var(--primaryColor);
+    }
+  }
+
+  .simple--cta {
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    color: var(--secondaryColor);
+    font-weight: bold;
+
+    &:hover {
+      transition: var(--duration) ease-in-out;
+      color: var(--hoverColor);
+    }
+  }
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .spaced {
+    margin-top: 5px;
+  }

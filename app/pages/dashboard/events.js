@@ -34,6 +34,8 @@ export default function Events({ events, userId }) {
                         </Modal>
                         {events && events.map((event) => (
                             <Event
+                                userId={userId}
+                                eventId={event._id}
                                 key={event._id}
                                 name={event.name}
                                 description={event.description}
@@ -58,10 +60,9 @@ export async function getServerSideProps(context) {
       }
     }
 
-    const URL = process.env.NEXT_PUBLIC_NODE_ENV !== 'development' ? process.env.NEXT_LOCAL_URL : process.env.NEXT_PUBLIC_HOST_API_URL;
+    const URL = process.env.NEXTAUTH_URL;
     const response = await fetch(`${URL}/api/user/company-event?id=${session.id}`)
     const events = await response.json();
-  
     return {
       props: {
         sessionAuth: session,

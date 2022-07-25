@@ -21,15 +21,14 @@ export default function Teams({ teamMembers, userId }) {
           <button onClick={handleOpen} className={"dashboard--cta"}>
             Add team member <FiPlus />
           </button>
-        </div>
-
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description">
-          <FormAddUser onSubmit={handleSubmit} userId={userId} />
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description">
+            <FormAddUser onSubmit={handleSubmit} teamMembers={teamMembers} />
         </Modal>
+        </div>
         <div className={"team--wrapper"}>
           {teamMembers && teamMembers.map((member) => (
             <CardUser
@@ -55,7 +54,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const URL = process.env.NEXT_PUBLIC_NODE_ENV !== 'development' ? process.env.NEXTAUTH_URL : process.env.NEXT_PUBLIC_HOST_API_URL;
+  const URL = process.env.NEXTAUTH_URL;
   const response = await fetch(`${URL}/api/user/company-members?id=${session.id}`)
   const teamMembers = await response.json();
 
