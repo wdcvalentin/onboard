@@ -1,5 +1,4 @@
-const mongoose = require("mongoose")
-const Schema = mongoose.Schema;
+import { Schema, model, models } from 'mongoose';
 
 const companySchema = new Schema({
     dateCreation: {
@@ -22,4 +21,6 @@ const companySchema = new Schema({
     }],
 })
 
-module.exports = mongoose.model("company", companySchema)
+const Company = models.company || model("company", companySchema)
+
+export default Company

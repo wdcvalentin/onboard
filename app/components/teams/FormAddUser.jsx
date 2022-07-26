@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { BiSearch } from 'react-icons/bi'
 import { MdClear } from 'react-icons/md'
 import CustomButton from "../Buttons/CustomButton";
+import { useRouter } from 'next/router';
 
-export const FormAddUser = ({ onSubmit, teamMembers }) => {
+export const FormAddUser = ({ setOpen, onSubmit, teamMembers, companyId }) => {
+  const router = useRouter();
   const [users, setUsers] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -44,6 +46,23 @@ export const FormAddUser = ({ onSubmit, teamMembers }) => {
     getUsers()
   }, [])
 
+  const handleSelectedUser = async (user) => {
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    const options = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        userId: user._id,
+        companyId
+      })
+    };
+    await fetch('/api/user/add-user-to-company', options)
+    router.replace(router.asPath);
+    setOpen(false);
+  }
+
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
@@ -64,7 +83,7 @@ export const FormAddUser = ({ onSubmit, teamMembers }) => {
   };
 
   const searchSuggestion = (value) => (
-    <div key={value._id} className="dataItem">
+    <div onClick={async () => await handleSelectedUser(value)} key={value._id} className="dataItem">
       <p>{value.email}</p>
     </div>
   )

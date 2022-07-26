@@ -51,7 +51,6 @@ router.put("/:id", async (req, res) => {
     try {
         const data = req.body;
         data.dateUpdate = new Date();
-
         const company = await CompanyModel.findOneAndUpdate(req.params.id, data);
         res.send(`company updated : ${company}`);
     } catch (error) {

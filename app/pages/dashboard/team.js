@@ -6,7 +6,7 @@ import SideBar from '../../components/layout/sidebar';
 import { CardUser } from '../../components/teams/CardUser';
 import { FormAddUser } from '../../components/teams/FormAddUser';
 
-export default function Teams({ teamMembers, userId }) {
+export default function Teams({ teamMembers, userId, companyId }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -26,7 +26,11 @@ export default function Teams({ teamMembers, userId }) {
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description">
-            <FormAddUser onSubmit={handleSubmit} teamMembers={teamMembers} />
+            <FormAddUser 
+              setOpen={setOpen}
+              onSubmit={handleSubmit}
+              companyId={companyId}
+              teamMembers={teamMembers} />
         </Modal>
         </div>
         <div className={"team--wrapper"}>
@@ -55,15 +59,17 @@ export async function getServerSideProps(context) {
   }
 
   const URL = process.env.NEXTAUTH_URL;
-  const response = await fetch(`${URL}/api/user/company-members?id=${session.id}`)
-  const teamMembers = await response.json();
-
+  const responseCompany = await fetch(`${URL}/api/user/my-company?userId=${session.id}`)
+  const company = await responseCompany.json();
+  const teamMembersResponse = await fetch(`${URL}/api/user/users?ids=${company.workers}`)
+  const teamMembers = await teamMembersResponse.json();
   return {
     props: {
       sessionAuth: session,
       teamMembers,
       userId: session.id,
+      companyId: company._id,
       protected: true,
-    }, // Will be passed to the page component as props
+    },
   }
 }
