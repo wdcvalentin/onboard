@@ -1,0 +1,20 @@
+.activity-container-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-card--container {
+    background-color: var(--primaryColor);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 16px 0;
+}
+
+.activity-days-btn {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 16px;
+    padding: 32px;
+    margin: 16px 0;
+    color: var(--secondaryColor)
+}

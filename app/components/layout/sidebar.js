@@ -3,7 +3,7 @@ import { signOut } from 'next-auth/react';
 
 
 export default function SideBar() {
-  
+
   function logout() {
     logoutUser()
   }
@@ -21,13 +21,13 @@ export default function SideBar() {
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/events">
-                <a className={"sidebar--item"}>Events</a>
+              <Link href="/dashboard/activity">
+                <a className={"sidebar--item"}>Activity</a>
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/activity">
-                <a className={"sidebar--item"}>Activity</a>
+              <Link href="/dashboard/events">
+                <a className={"sidebar--item"}>Events</a>
               </Link>
             </li>
             <li>
@@ -35,7 +35,7 @@ export default function SideBar() {
                 <a className={"sidebar--item"}>Team</a>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/dashboard/planning">
                 <a className={"sidebar--item"}>Planning</a>
               </Link>
@@ -44,7 +44,7 @@ export default function SideBar() {
               <Link href="/dashboard/account">
                 <a className={"sidebar--item"}>Account</a>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className={"sidebar--navigation-secondary"}>
