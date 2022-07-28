@@ -1,8 +1,5 @@
-export const formatDateHM = (date) => {
-    const hour = new Date(date).getHours();
-    const min = new Date(date).getMinutes();
+import moment from 'moment'
 
-    return `${hour}:${min < 10 ? `0${min}` : min}`
-}
+export const formatDateHM = (date) => moment(date).format("dddd D MMMM HH:mm")
 
 export const formatDateToYMD = (date) => date.toISOString().slice(0, 10);

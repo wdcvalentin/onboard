@@ -1,7 +1,8 @@
 import { getSession } from 'next-auth/react';
 import SideBar from '../components/layout/sidebar'
+import { formatDateHM } from '../utils/dateFormat';
 
-export default function Dashboard({ sessionAuth, user }) {
+export default function Dashboard({ sessionAuth, user, userEvent }) {
   return (
     <div className={"dashboard--section"}>
       <SideBar />
@@ -10,7 +11,25 @@ export default function Dashboard({ sessionAuth, user }) {
           <h2>Dashboard</h2>
         </div>
         <div className={"dashboard--wrapper"}>
-          <h3>Hello {user.firstName} </h3>
+          <div className='card--container-dashboard'>
+            <h3>Your next Events Incoming</h3>
+            {userEvent.map((event) => {
+              return (
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <button onClick={() => window.location = '/dashboard/events'}>
+                    {event.name}
+                  </button>
+                  <div style={{ color: 'gray' }}>{formatDateHM(event.eventDate)}</div>
+                </div>
+              )
+            })}
+          </div>
+          <div className='card--container-dashboard'>
+            <h3>Activity Joined</h3>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{ color: 'gray' }}>No activity joined</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -29,13 +48,20 @@ export async function getServerSideProps(context) {
   }
 
   const URL = process.env.NEXTAUTH_URL;
-  const response = await fetch(`${URL}/api/user/${session.id}`)
-  const user = await response.json();
+  const [responseUser, responseUserEvent] = await Promise.all([
+    fetch(`${URL}/api/user/${session.id}`),
+    fetch(`${URL}/api/event/user-event?userId=${session.id}`)
+  ])
+  const [user, userEvent] = await Promise.all([
+    await responseUser.json(),
+    await responseUserEvent.json()
+  ])
 
   return {
     props: {
       sessionAuth: session,
       user,
+      userEvent: userEvent.events,
       protected: true,
     }, // Will be passed to the page component as props
   }
