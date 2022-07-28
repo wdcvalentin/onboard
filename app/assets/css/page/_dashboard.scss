@@ -179,6 +179,7 @@
   border-radius: 16px;
   padding: 32px;
   margin: 16px 0;
+  cursor: pointer;
 
   button {
     font-size: 16px;
@@ -193,6 +194,10 @@
       transition: var(--duration) ease-in-out;
       text-decoration: underline;
     }
+  }
+
+  &:hover {
+    transition: var(--duration) ease-in-out;
   }
 }
 

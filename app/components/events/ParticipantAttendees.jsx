@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import Image from 'next/image'
+import { useEffect, useState } from 'react';
 
 export const ParticipantAttendees = ({ ids }) => {
     const [participants, setParticipants] = useState(null);
@@ -9,7 +8,7 @@ export const ParticipantAttendees = ({ ids }) => {
             const data = await response.json();
             setParticipants(data)
         }
-        getParticipants()
+        ids.length && getParticipants()
     }, [])
 
     const style = {
@@ -28,7 +27,7 @@ export const ParticipantAttendees = ({ ids }) => {
 
     return (
         <div style={style}>
-            {participants && participants.map((user) => {
+            {participants ? participants.map((user) => {
                 return (
                     <div key={user._id} style={{borderBottom: '1px solid gray'}}>
                         <h3> {user.firstName} {user.lastName} </h3>
@@ -44,7 +43,7 @@ export const ParticipantAttendees = ({ ids }) => {
                         /> */}
                     </div>
                 )
-            })}
+            }) : <p>No user yet</p>}
         </div>
     );
 };

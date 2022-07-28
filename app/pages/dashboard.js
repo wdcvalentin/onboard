@@ -1,5 +1,6 @@
 import { getSession } from 'next-auth/react';
-import SideBar from '../components/layout/sidebar'
+import Link from "next/link";
+import SideBar from '../components/layout/sidebar';
 import { formatDateHM } from '../utils/dateFormat';
 
 export default function Dashboard({ sessionAuth, user, userEvent }) {
@@ -11,25 +12,30 @@ export default function Dashboard({ sessionAuth, user, userEvent }) {
           <h2>Dashboard</h2>
         </div>
         <div className={"dashboard--wrapper"}>
-          <div className='card--container-dashboard'>
-            <h3>Your next Events Incoming</h3>
-            {userEvent.map((event) => {
-              return (
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <button onClick={() => window.location = '/dashboard/events'}>
-                    {event.name}
-                  </button>
-                  <div style={{ color: 'gray' }}>{formatDateHM(event.eventDate)}</div>
-                </div>
-              )
-            })}
-          </div>
-          <div className='card--container-dashboard'>
-            <h3>Activity Joined</h3>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <div style={{ color: 'gray' }}>No activity joined</div>
+          <Link href="/dashboard/events">
+            <div className='card--container-dashboard'>
+              <h3>Your next Events Incoming</h3>
+
+              {userEvent.map((event) => {
+                return (
+                  <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <button onClick={() => window.location = '/dashboard/events'}>
+                      {event.name}
+                    </button>
+                    <div style={{ color: 'gray' }}>{formatDateHM(event.eventDate)}</div>
+                  </div>
+                )
+              })}
             </div>
-          </div>
+          </Link>
+          <Link href="/dashboard/activity">
+            <div className='card--container-dashboard'>
+              <h3>Activity Joined</h3>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={{ color: 'gray' }}>No activity joined</div>
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
